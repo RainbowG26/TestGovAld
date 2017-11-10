@@ -5,15 +5,20 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ActionWithOurElements { //В этот класс мы будем выносить все елементы страницы
 
     WebDriver webDriver;
     Logger logger;
+    WebDriverWait webDriverWait15;
 
     public ActionWithOurElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         logger = Logger.getLogger(getClass());
+        webDriverWait15 = new WebDriverWait(webDriver, 15); //Драйвер жди 15 секунд каждые пол секунды он будет счелкать по кнопке
     }
 
     /**
@@ -109,5 +114,69 @@ public class ActionWithOurElements { //В этот класс мы будем в
             Assert.fail("Can not work with element");
         }
         return false;
+    }
+
+    // передать в этот метод в каком елементе что выбрать
+    public void selectTextInDropDownByText(WebElement dropDown, String text) {
+        try {
+            //Библиотека умеет работать с ДропДауном и с него получаем все елементы
+            // нужно отталкиваться от мануального тесткейса!!! для работы с дроп дауном
+            // DropDown - это селект
+            // мы получаем все что находиться внутри дропдауна
+            Select optionsFromDropDown = new Select(dropDown);
+            // Выбери нам из текста
+            optionsFromDropDown.selectByVisibleText(text);
+            //optionsFromDropDown.selectByValue(text);
+            logger.info(text + " was selected si DropDown by Text");
+        } catch (Exception e) {
+            logger.error("Can not work with DropDown");
+            Assert.fail("Can not work with DropDown");
+        }
+    }
+
+    //Метод выбора значения в DropDown по value
+    public void selectValueInDropDownByValue(WebElement dropDown, String text) {
+        try {
+            //Библиотека умеет работать с ДропДауном и с него получаем все елементы
+            Select optionsFromDropDown = new Select(dropDown);
+            // Выбери нам из value
+            // select by value - работает быстрей в разы!!
+            optionsFromDropDown.selectByValue(text);
+            logger.info(text + " was selected si DropDown by value");
+        } catch (Exception e) {
+            logger.error("Can not work with DropDown");
+            Assert.fail("Can not work with DropDown");
+        }
+    }
+
+    //Метод по работе с checkbox(сначала у него узнать состояние , и в зависимости от состояния - кликнуть по нему или нет)
+    public void clickCheckBox(WebElement checkBox) {
+        try {
+            Boolean statusCheckBox = checkBox.isSelected();
+            if (statusCheckBox) {
+                logger.info("check box is initially checked");
+            } else {
+                webDriverWait15.until(ExpectedConditions.elementToBeClickable(checkBox));
+                checkBox.click();
+                logger.info("check box was clicked");
+            }
+        } catch (Exception e) {
+            logger.error("Can not work with element " + checkBox);
+            Assert.fail("Can not work with element " + checkBox);
+        }
+    }
+
+    public void setCheckboxState(WebElement checkbox, String expectedState) {
+
+        boolean currentState = checkbox.isSelected();
+
+        logger.info("Clicking checkBox");
+        if (currentState == true && expectedState == "unclicked") {
+            logger.info("Click checkbox to make it unclicked");
+            checkbox.click();
+        } else if (currentState == false && expectedState == "clicked") {
+            logger.info("Click checkbox to make it clicked");
+            checkbox.click();
+        }
     }
 }

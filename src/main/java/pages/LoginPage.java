@@ -89,4 +89,13 @@ public class LoginPage extends ParentPage {
     public boolean isPanelBodyPresent(){
         return actionWithOurElements.isElementPresent(PanelBody);
     }
+
+    public void loginUser(String login, String password){
+        openLoginPage();
+        enterLoginToInput(login);
+        enterPasswordToInput(password);
+        clickOnSubmitButton();
+        isElementWithXpathPresent();
+        isNameMyTenderPresent();
+    }
 }
