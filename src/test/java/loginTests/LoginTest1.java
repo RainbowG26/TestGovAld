@@ -17,7 +17,7 @@ public class LoginTest1 {
 
     @Test //аннотацию Junit
 
-    public void validLogon() {
+    public void validLogOn() {
 
         //эта надпись нужно для того чтобы указать путь к файлу chromedriver для работы с ним
         File fileFF = new File("././drivers/chromedriver.exe");
