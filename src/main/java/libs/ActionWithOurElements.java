@@ -9,6 +9,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+
 public class ActionWithOurElements { //В этот класс мы будем выносить все елементы страницы
 
     WebDriver webDriver;
@@ -74,6 +80,7 @@ public class ActionWithOurElements { //В этот класс мы будем в
 
     /**
      * Method is element with locator
+     *
      * @param locator
      * @param text
      * @return
@@ -89,13 +96,14 @@ public class ActionWithOurElements { //В этот класс мы будем в
     public boolean isElementPresent(WebElement element) {
         try {
             return element.isDisplayed();
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
 
     /**
      * Method is element with Present locator and text
+     *
      * @param xPath
      * @param text
      * @return
@@ -107,7 +115,7 @@ public class ActionWithOurElements { //В этот класс мы будем в
             // будем дожидаться появление елемента
             // зачеркнутый метод это имееться ввиду что он рабочий но есть еще новей
             String textFromElement = webDriver.findElement(By.xpath(xPath)).getText();
-            Assert.assertEquals(textFromElement,text,"Text in element not mathed"); //Сравнивает фактич из ожидаемым
+            Assert.assertEquals(textFromElement, text, "Text in element not mathed"); //Сравнивает фактич из ожидаемым
             return true;
         } catch (Exception e) {
             logger.error("Can not work with element");
@@ -179,4 +187,19 @@ public class ActionWithOurElements { //В этот класс мы будем в
             checkbox.click();
         }
     }
+
+    public void inputCalendarDataTime(WebElement dateCalendar) {
+//        LocalDateTime currentDate = LocalDateTime.now();
+//        currentDate.plusMinutes(5);
+//        dateCalendar.click();
+
+
+        DateTimeFormatter dateFormat =
+                DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+
+        LocalDateTime date = LocalDateTime.now();
+        dateFormat.format(date);
+        dateFormat.format(date.plusMinutes(5));
+    }
 }
+

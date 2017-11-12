@@ -92,7 +92,7 @@ public class PlanPage extends  ParentPage{
     @FindBy(id = "movePlanView")
     private WebElement movePlanView;
 
-    public void cickbuttonCreatePurchase(){
+    public void clickButtonCreatePurchase(){
         actionWithOurElements.clickOnElement(buttonCreatePurchase);
     }
 
@@ -116,6 +116,8 @@ public class PlanPage extends  ParentPage{
         actionWithOurElements.selectValueInDropDownByValue(selectCurrencies, valueOfType);
     }
 
-    public void planStartCalendar()
+    public void planStartCalendar(){
+        actionWithOurElements.inputCalendarDataTime(planStartCalendar);
+    }
 
 }
