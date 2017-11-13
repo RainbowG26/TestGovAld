@@ -4,7 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class PlanPage extends  ParentPage{
+import java.time.LocalDateTime;
+
+public class PlanPage extends ParentPage {
 
 
     public PlanPage(WebDriver webDriver) {
@@ -48,7 +50,7 @@ public class PlanPage extends  ParentPage{
     private WebElement searchClassifierText;
 
     @FindBy(id = "add-classifier")
-    private  WebElement addClassifier;
+    private WebElement addClassifier;
 
     @FindBy(id = "dialogContent")
     private WebElement dialogContent;
@@ -92,32 +94,31 @@ public class PlanPage extends  ParentPage{
     @FindBy(id = "movePlanView")
     private WebElement movePlanView;
 
-    public void clickButtonCreatePurchase(){
+    public void clickButtonCreatePurchase() {
         actionWithOurElements.clickOnElement(buttonCreatePurchase);
     }
 
-    public void clickPlanPurchase(){
+    public void clickPlanPurchase() {
         actionWithOurElements.clickOnElementByLocator(planPurchase);
     }
 
-    public void inputPlanTitle(String text){
+    public void inputPlanTitle(String text) {
         actionWithOurElements.enterText(planTitle, text);
     }
 
-    public void inputPlanDescription(String text){
+    public void inputPlanDescription(String text) {
         actionWithOurElements.enterText(planDescription, text);
     }
 
-    public void inputPlanBudget(String text){
+    public void inputPlanBudget(String text) {
         actionWithOurElements.enterText(planBudget, text);
     }
 
-    public void selectCurrenciesDropDown(String valueOfType){
+    public void selectCurrenciesDropDown(String valueOfType) {
         actionWithOurElements.selectValueInDropDownByValue(selectCurrencies, valueOfType);
     }
 
-    public void planStartCalendar(){
+    public void planStartCalendar() {
         actionWithOurElements.inputCalendarDataTime(planStartCalendar);
     }
-
 }

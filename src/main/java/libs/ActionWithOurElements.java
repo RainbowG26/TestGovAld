@@ -9,11 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 
 public class ActionWithOurElements { //В этот класс мы будем выносить все елементы страницы
 
@@ -188,18 +185,22 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
-    public void inputCalendarDataTime(WebElement dateCalendar) {
+    public void setDataPicker(String id, LocalDateTime value){
+        executeScript("SetDateTimePickerValue(\'"+id+"\',\'"+value+"\')");
+    }
+
+    public void inputCalendarDataTime(WebElement dateCalendar, LocalDateTime date) {
 //        LocalDateTime currentDate = LocalDateTime.now();
 //        currentDate.plusMinutes(5);
 //        dateCalendar.click();
 
-
         DateTimeFormatter dateFormat =
-                DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
-
-        LocalDateTime date = LocalDateTime.now();
+                DateTimeFormatter.ofPattern("%Y-%m-%d %H:%M:%S");
         dateFormat.format(date);
-        dateFormat.format(date.plusMinutes(5));
+        date = LocalDateTime.now();
+        setDataPicker("period_enquiry_start", (date.plusMinutes(5)));
+        setDataPicker("period_enquiry_end", (date.plusMinutes(30)));
     }
+
 }
 
