@@ -13,17 +13,18 @@ public class Utils {
 
     private Logger log;
 
-    public Utils(){ //Создали конструктор для работы с логом
+    public Utils() { //Создали конструктор для работы с логом
         log = Logger.getLogger(getClass());
     }
 
     /**
      * Taking screenshot into .//target// + pathToScreenShot
+     *
      * @param pathToScreenShot
      * @param driver
      */
-    public void screenShot(String pathToScreenShot, WebDriver driver){ //Метод который делает скрин
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE); //Снимает скрин
+    public void screenShot(String pathToScreenShot, WebDriver driver) { //Метод который делает скрин
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE); //Снимает скрин
         try {
             FileUtils.copyFile(scrFile, new File(pathToScreenShot));
             log.info("ScreenShot: " + pathToScreenShot);
@@ -34,9 +35,10 @@ public class Utils {
 
     /**
      * Hard wait
+     *
      * @param second
      */
-    public static void waitABit(int second){ //Метод останавливает все процессы в джава
+    public static void waitABit(int second) { //Метод останавливает все процессы в джава
         try {
             Thread.sleep(second);
         } catch (InterruptedException e) {

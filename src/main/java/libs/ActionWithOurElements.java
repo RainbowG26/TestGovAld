@@ -3,6 +3,7 @@ package libs;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,6 +18,7 @@ public class ActionWithOurElements { //В этот класс мы будем в
     WebDriver webDriver;
     Logger logger;
     WebDriverWait webDriverWait15;
+    JavascriptExecutor js;
 
     public ActionWithOurElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -185,22 +187,25 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
-    public void setDataPicker(String id, LocalDateTime value){
-        executeScript("SetDateTimePickerValue(\'"+id+"\',\'"+value+"\')");
+    public void setDataPicker(String id, String value) {
+        js.executeScript("SetDateTimePickerValue(\'" + id + "\',\'" + value + "\')");
     }
 
-    public void inputCalendarDataTime(WebElement dateCalendar, LocalDateTime date) {
+    public void inputCalendarDataTime(WebElement dateCalendar) {
 //        LocalDateTime currentDate = LocalDateTime.now();
 //        currentDate.plusMinutes(5);
 //        dateCalendar.click();
-
-        DateTimeFormatter dateFormat =
-                DateTimeFormatter.ofPattern("%Y-%m-%d %H:%M:%S");
-        dateFormat.format(date);
-        date = LocalDateTime.now();
-        setDataPicker("period_enquiry_start", (date.plusMinutes(5)));
-        setDataPicker("period_enquiry_end", (date.plusMinutes(30)));
+//      dateFormat.format(date);
+        try {
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("%Y-%m-%d %H:%M:%S"); //запуск с консоли - SetDateTimePickerValue('planStart','2017-11-14 17:52:07')
+            LocalDateTime currentDate = LocalDateTime.now();
+            setDataPicker("period_enquiry_start", (currentDate.plusMinutes(1)).format(dateFormat));
+            //setDataPicker("period_enquiry_end", (currentDate.plusMinutes(15)).format(dateFormat));
+            logger.info("Data picker work");
+        } catch (Exception e) {
+            logger.error("Data picker does not work");
+            Assert.fail("Data picker does not work");
+        }
     }
-
 }
 
