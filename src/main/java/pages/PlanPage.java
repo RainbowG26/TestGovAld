@@ -119,6 +119,26 @@ public class PlanPage extends ParentPage {
     }
 
     public void planStartCalendar() {
-        actionWithOurElements.inputCalendarDataTime(planStartCalendar);
+        actionWithOurElements.inputCalendarDataTime();
+    }
+
+    public void selectYear(String valueOfType){
+        actionWithOurElements.selectValueInDropDownByValue(yearSelect, valueOfType);
+    }
+
+    public void selectPurchaseType(String valueOfType){
+        actionWithOurElements.selectValueInDropDownByValue(purchaseType, valueOfType);
+    }
+
+    public void clickClassifier212015(){
+        actionWithOurElements.clickOnElement(clsClick);
+    }
+
+    public void searchClassifier212015(String number){
+        actionWithOurElements.enterText(searchClassifierText, number);
+    }
+
+    public void addClassifier(){
+        actionWithOurElements.clickOnElement(addClassifier);
     }
 }

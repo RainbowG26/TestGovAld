@@ -18,7 +18,6 @@ public class ActionWithOurElements { //В этот класс мы будем в
     WebDriver webDriver;
     Logger logger;
     WebDriverWait webDriverWait15;
-    JavascriptExecutor js;
 
     public ActionWithOurElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -187,19 +186,19 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
+    //str formatter java - форматер в строку, js.executeScript java
+
     public void setDataPicker(String id, String value) {
+        JavascriptExecutor js = (JavascriptExecutor) webDriver;
         js.executeScript("SetDateTimePickerValue(\'" + id + "\',\'" + value + "\')");
     }
 
-    public void inputCalendarDataTime(WebElement dateCalendar) {
-//        LocalDateTime currentDate = LocalDateTime.now();
-//        currentDate.plusMinutes(5);
-//        dateCalendar.click();
-//      dateFormat.format(date);
+    public void inputCalendarDataTime() {
         try {
-            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("%Y-%m-%d %H:%M:%S"); //запуск с консоли - SetDateTimePickerValue('planStart','2017-11-14 17:52:07')
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime currentDate = LocalDateTime.now();
-            setDataPicker("period_enquiry_start", (currentDate.plusMinutes(1)).format(dateFormat));
+            //запуск с консоли - SetDateTimePickerValue('planStart','2017-11-14 17:52:07')
+            setDataPicker("planStart", (currentDate.plusMinutes(2)).format(dateFormat));
             //setDataPicker("period_enquiry_end", (currentDate.plusMinutes(15)).format(dateFormat));
             logger.info("Data picker work");
         } catch (Exception e) {
@@ -208,4 +207,3 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 }
-
