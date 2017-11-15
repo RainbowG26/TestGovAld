@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import pages.LoginPage;
+import pages.PlanPage;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -23,6 +24,7 @@ public class ParentTest {
     private Utils utils = new Utils(); //обьявили обьект для снятия скринов
     private String pathToScreenShot; //Переменная для изменяемого пути к файлу
     public LoginPage loginPage; //обьявили переменную loginPage
+    public PlanPage planPage;
 
 
     //Конструктор передает во внутрь класса, настроить обьект. передаем обьект с одного класса в другом
@@ -47,6 +49,7 @@ public class ParentTest {
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         loginPage = new LoginPage(webDriver); //Передали в loginPage webDriver с которым мы будем пользоваться
+        planPage = new PlanPage(webDriver);
     }
 
     @After

@@ -3,11 +3,15 @@ package libs;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ActionWithOurElements { //В этот класс мы будем выносить все елементы страницы
 
@@ -74,6 +78,7 @@ public class ActionWithOurElements { //В этот класс мы будем в
 
     /**
      * Method is element with locator
+     *
      * @param locator
      * @param text
      * @return
@@ -89,13 +94,14 @@ public class ActionWithOurElements { //В этот класс мы будем в
     public boolean isElementPresent(WebElement element) {
         try {
             return element.isDisplayed();
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
 
     /**
      * Method is element with Present locator and text
+     *
      * @param xPath
      * @param text
      * @return
@@ -107,7 +113,7 @@ public class ActionWithOurElements { //В этот класс мы будем в
             // будем дожидаться появление елемента
             // зачеркнутый метод это имееться ввиду что он рабочий но есть еще новей
             String textFromElement = webDriver.findElement(By.xpath(xPath)).getText();
-            Assert.assertEquals(textFromElement,text,"Text in element not mathed"); //Сравнивает фактич из ожидаемым
+            Assert.assertEquals(textFromElement, text, "Text in element not mathed"); //Сравнивает фактич из ожидаемым
             return true;
         } catch (Exception e) {
             logger.error("Can not work with element");
@@ -177,6 +183,27 @@ public class ActionWithOurElements { //В этот класс мы будем в
         } else if (currentState == false && expectedState == "clicked") {
             logger.info("Click checkbox to make it clicked");
             checkbox.click();
+        }
+    }
+
+    //str formatter java - форматер в строку, js.executeScript java
+
+    public void setDataPicker(String id, String value) {
+        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+        js.executeScript("SetDateTimePickerValue(\'" + id + "\',\'" + value + "\')");
+    }
+
+    public void inputCalendarDataTime() {
+        try {
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime currentDate = LocalDateTime.now();
+            //запуск с консоли - SetDateTimePickerValue('planStart','2017-11-14 17:52:07')
+            setDataPicker("planStart", (currentDate.plusMinutes(2)).format(dateFormat));
+            //setDataPicker("period_enquiry_end", (currentDate.plusMinutes(15)).format(dateFormat));
+            logger.info("Data picker work");
+        } catch (Exception e) {
+            logger.error("Data picker does not work");
+            Assert.fail("Data picker does not work");
         }
     }
 }

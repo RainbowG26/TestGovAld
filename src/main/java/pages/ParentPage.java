@@ -42,20 +42,16 @@ public class ParentPage {
 
     /**
      * Method check title page
+     *
      * @param expectedTitle
      */
 
-    public void checkTitle(String expectedTitle){ //Метод ищет title //Strategy Pattern used and Map
-        try{
+    public void checkTitle(String expectedTitle) { //Метод ищет title //Strategy Pattern used and Map
+        try {
             Assert.assertEquals(expectedTitle, webDriver.getTitle(), "Title not matched");
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.error("Can not work with Title");
             Assert.fail("Can not work with Title");
         }
     }
-
-    public void inputCalendarDatatime(){
-
-    }
-
 }
