@@ -4,10 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.time.LocalDateTime;
-
 public class PlanPage extends ParentPage {
-
 
     public PlanPage(WebDriver webDriver) {
         super(webDriver);
@@ -49,14 +46,17 @@ public class PlanPage extends ParentPage {
     @FindBy(id = "search-classifier-text")
     private WebElement searchClassifierText;
 
+    @FindBy(xpath = ".//*[contains(@id,'anchor')]")
+    private WebElement visibleCheckbox;
+
     @FindBy(id = "add-classifier")
     private WebElement addClassifier;
 
-    @FindBy(id = "dialogContent")
-    private WebElement dialogContent;
-
     @FindBy(xpath = ".//button[@itemid = 'otherClassifier']")
     private WebElement otherClassifier;
+
+    @FindBy(xpath = ".//*[contains(@id,'anchor')]")
+    private WebElement visibleCheckbox1;
 
     @FindBy(xpath = ".//button[@itemid = 'kekvClassifier']")
     private WebElement kekvClassifier;
@@ -122,23 +122,43 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.inputCalendarDataTime();
     }
 
-    public void selectYear(String valueOfType){
+    public void selectYear(String valueOfType) {
         actionWithOurElements.selectValueInDropDownByValue(yearSelect, valueOfType);
     }
 
-    public void selectPurchaseType(String valueOfType){
+    public void selectPurchaseType(String valueOfType) {
         actionWithOurElements.selectValueInDropDownByValue(purchaseType, valueOfType);
     }
 
-    public void clickClassifier212015(){
+    public void clickClassifier212015() {
         actionWithOurElements.clickOnElement(clsClick);
     }
 
-    public void searchClassifier212015(String number){
+    public void searchClassifier212015(String number) {
         actionWithOurElements.enterText(searchClassifierText, number);
     }
 
-    public void addClassifier(){
+//    public void waitElementClassifier(int second){
+//        utils.waitABit(3);
+//    }
+
+    public void isElementClassifierId() {
+        actionWithOurElements.isElementPresent(visibleCheckbox);
+    }
+
+    public void addClassifier() {
         actionWithOurElements.clickOnElement(addClassifier);
+    }
+
+    public void clickOtherClassifier(){
+        actionWithOurElements.clickOnElement(otherClassifier);
+    }
+
+    public void searhOtherClassifier(String number){
+        actionWithOurElements.enterText(searchClassifierText, number);
+    }
+
+    public void isElementOtherClassifierId(){
+        actionWithOurElements.isElementPresent(visibleCheckbox1);
     }
 }

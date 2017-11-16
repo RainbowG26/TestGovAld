@@ -62,6 +62,7 @@ public class ParentTest {
 
     /**
      * Check actualResult / expectedResult
+     *
      * @param message
      * @param actualResult
      * @param expectedResult
