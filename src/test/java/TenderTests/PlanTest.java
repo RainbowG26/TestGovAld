@@ -3,10 +3,10 @@ package TenderTests;
 import org.junit.Test;
 import parentTest.ParentTest;
 
-public class PlanTest extends ParentTest{
+public class PlanTest extends ParentTest {
 
     @Test
-    public void createPlan(){
+    public void createPlan() {
         loginPage.loginUser("test.gov.user@yopmail.com", "123456");
         planPage.clickButtonCreatePurchase();
         planPage.clickPlanPurchase();
@@ -19,6 +19,7 @@ public class PlanTest extends ParentTest{
         planPage.selectPurchaseType("3");
         planPage.clickClassifier212015();
         planPage.searchClassifier212015("30000000-9");
+        planPage.isElementClassifierId();
         planPage.addClassifier();
     }
 }

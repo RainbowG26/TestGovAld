@@ -2,19 +2,18 @@ package libs;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class Utils {
 
-    private Logger log;
+    private Logger logger;
 
     public Utils() { //Создали конструктор для работы с логом
-        log = Logger.getLogger(getClass());
+        logger = Logger.getLogger(getClass());
     }
 
     /**
@@ -27,7 +26,7 @@ public class Utils {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE); //Снимает скрин
         try {
             FileUtils.copyFile(scrFile, new File(pathToScreenShot));
-            log.info("ScreenShot: " + pathToScreenShot);
+            logger.info("ScreenShot: " + pathToScreenShot);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,9 +37,9 @@ public class Utils {
      *
      * @param second
      */
-    public static void waitABit(int second) { //Метод останавливает все процессы в джава
+    public void waitABit(int second) { //Метод останавливает все процессы в джава
         try {
-            Thread.sleep(second);
+            TimeUnit.SECONDS.sleep(second);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

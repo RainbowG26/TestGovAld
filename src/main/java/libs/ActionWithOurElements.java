@@ -35,6 +35,7 @@ public class ActionWithOurElements { //В этот класс мы будем в
     //Этот метод будет передавать елемент и текст который мы будем вводить
     public void enterText(WebElement element, String text) {
         try {
+            webDriverWait15.until(ExpectedConditions.elementToBeClickable(element));
             element.clear(); //Очисти поле
             element.sendKeys(text); //Введи текст
             logger.info(text + " was inputted");
@@ -93,8 +94,11 @@ public class ActionWithOurElements { //В этот класс мы будем в
 
     public boolean isElementPresent(WebElement element) {
         try {
+            logger.info("Was found " + element);
             return element.isDisplayed();
         } catch (Exception e) {
+            logger.error("Can not found " + element);
+            Assert.fail("Can not found " + element);
             return false;
         }
     }
