@@ -21,5 +21,8 @@ public class PlanTest extends ParentTest {
         planPage.searchClassifier212015("30000000-9");
         planPage.isElementClassifierId();
         planPage.addClassifier();
+        planPage.clickOtherClassifier();
+        planPage.searhOtherClassifier("3121");
+        planPage.isElementOtherClassifierId();
     }
 }

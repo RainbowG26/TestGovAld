@@ -47,16 +47,16 @@ public class PlanPage extends ParentPage {
     private WebElement searchClassifierText;
 
     @FindBy(xpath = ".//*[contains(@id,'anchor')]")
-    private WebElement visiblecheckbox;
+    private WebElement visibleCheckbox;
 
     @FindBy(id = "add-classifier")
     private WebElement addClassifier;
 
-    @FindBy(id = "dialogContent")
-    private WebElement dialogContent;
-
     @FindBy(xpath = ".//button[@itemid = 'otherClassifier']")
     private WebElement otherClassifier;
+
+    @FindBy(xpath = ".//*[contains(@id,'anchor')]")
+    private WebElement visibleCheckbox1;
 
     @FindBy(xpath = ".//button[@itemid = 'kekvClassifier']")
     private WebElement kekvClassifier;
@@ -143,10 +143,22 @@ public class PlanPage extends ParentPage {
 //    }
 
     public void isElementClassifierId() {
-        actionWithOurElements.isElementPresent(visiblecheckbox);
+        actionWithOurElements.isElementPresent(visibleCheckbox);
     }
 
     public void addClassifier() {
         actionWithOurElements.clickOnElement(addClassifier);
+    }
+
+    public void clickOtherClassifier(){
+        actionWithOurElements.clickOnElement(otherClassifier);
+    }
+
+    public void searhOtherClassifier(String number){
+        actionWithOurElements.enterText(searchClassifierText, number);
+    }
+
+    public void isElementOtherClassifierId(){
+        actionWithOurElements.isElementPresent(visibleCheckbox1);
     }
 }
