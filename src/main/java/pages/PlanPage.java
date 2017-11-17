@@ -152,8 +152,7 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.clickOnElement(addClassifier);
     }
 
-    public void clickOtherClassifier() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(5);
+    public void clickOtherClassifier() {
         actionWithOurElements.clickOnElement(otherClassifier);
     }
 
