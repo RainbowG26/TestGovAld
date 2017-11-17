@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.concurrent.TimeUnit;
+
 public class PlanPage extends ParentPage {
 
     public PlanPage(WebDriver webDriver) {
@@ -150,11 +152,12 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.clickOnElement(addClassifier);
     }
 
-    public void clickOtherClassifier(){
+    public void clickOtherClassifier() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(5);
         actionWithOurElements.clickOnElement(otherClassifier);
     }
 
-    public void searhOtherClassifier(String number){
+    public void searchOtherClassifier(String number){
         actionWithOurElements.enterText(searchClassifierText, number);
     }
 
