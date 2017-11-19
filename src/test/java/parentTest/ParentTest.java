@@ -21,7 +21,7 @@ import static org.hamcrest.CoreMatchers.is;
 public class ParentTest {
     public WebDriver webDriver; //Обьявили модификатором public чтобы был доступен в обоих package(инкапсуляция)
     private Logger logger = Logger.getLogger(getClass());
-    private Utils utils = new Utils(); //обьявили обьект для снятия скринов
+    private Utils utils = new Utils(webDriver); //обьявили обьект для снятия скринов
     private String pathToScreenShot; //Переменная для изменяемого пути к файлу
     public LoginPage loginPage; //обьявили переменную loginPage
     public PlanPage planPage;
@@ -48,6 +48,7 @@ public class ParentTest {
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
         loginPage = new LoginPage(webDriver); //Передали в loginPage webDriver с которым мы будем пользоваться
         planPage = new PlanPage(webDriver);
     }

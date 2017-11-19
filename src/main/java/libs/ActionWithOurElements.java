@@ -2,10 +2,7 @@ package libs;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,11 +15,14 @@ public class ActionWithOurElements { //В этот класс мы будем в
     WebDriver webDriver;
     Logger logger;
     WebDriverWait webDriverWait15;
+    Utils utils;
 
-    public ActionWithOurElements(WebDriver webDriver) {
-        this.webDriver = webDriver;
+
+    public ActionWithOurElements(WebDriver driver) {
+        this.webDriver = driver;
         logger = Logger.getLogger(getClass());
         webDriverWait15 = new WebDriverWait(webDriver, 15); //Драйвер жди 15 секунд каждые пол секунды он будет счелкать по кнопке
+        utils = new Utils(webDriver);
     }
 
     /**
@@ -77,18 +77,16 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
-    /**
-     * Method is element with locator
-     *
-     * @param locator
-     * @param text
-     * @return
-     */
-    public boolean isElementPresent(String locator, String text) {
+    public boolean isElementPresent1(WebElement element) throws Exception{
         try {
-            return webDriver.findElement(By.xpath(locator)).isDisplayed();
-        } catch (Exception e) {
+            logger.info("Set text");
+            element.getText();
+            logger.info("Done");
+            return true;
+        } catch (NoSuchElementException e) {
             return false;
+        } catch (Exception e) {
+            throw new Exception("Unexpected exception");
         }
     }
 
@@ -125,6 +123,7 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
         return false;
     }
+
 
     // передать в этот метод в каком елементе что выбрать
     public void selectTextInDropDownByText(WebElement dropDown, String text) {
@@ -190,19 +189,12 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
-    //str formatter java - форматер в строку, js.executeScript java
-
-    public void setDataPicker(String id, String value) {
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
-        js.executeScript("SetDateTimePickerValue(\'" + id + "\',\'" + value + "\')");
-    }
-
     public void inputCalendarDataTime() {
         try {
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime currentDate = LocalDateTime.now();
             //запуск с консоли - SetDateTimePickerValue('planStart','2017-11-14 17:52:07')
-            setDataPicker("planStart", (currentDate.plusMinutes(2)).format(dateFormat));
+            utils.setDataPicker("planStart", (currentDate.plusMinutes(2)).format(dateFormat));
             //setDataPicker("period_enquiry_end", (currentDate.plusMinutes(15)).format(dateFormat));
             logger.info("Data picker work");
         } catch (Exception e) {
