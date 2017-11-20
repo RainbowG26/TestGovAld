@@ -10,8 +10,8 @@ public class PlanTest extends ParentTest {
         loginPage.loginUser("test.gov.user@yopmail.com", "123456");
         planPage.clickButtonCreatePurchase();
         planPage.clickPlanPurchase();
-        planPage.inputPlanTitle("Тест Создание Плана закупок");
-        planPage.inputPlanDescription("Создание Примечания к Плану закупок");
+        planPage.inputPlanTitle("Тест Створення Плана закупівель");
+        planPage.inputPlanDescription("Тест Створення Плана закупівель");
         planPage.inputPlanBudget("1000");
         planPage.selectCurrenciesDropDown("string:UAH");
         planPage.planStartCalendar();
@@ -32,7 +32,7 @@ public class PlanTest extends ParentTest {
         planPage.saveChangesPlanNextStep();
 
         planPage.addProcurementSubject0();
-        planPage.procurementSubjectDescription00("Монитор");
+        planPage.procurementSubjectDescription00("Монітор");
         planPage.procurementSubjectQuantity00("100");
         planPage.selectUnit00("H87");
         planPage.clickClassifier212015_();
@@ -47,5 +47,11 @@ public class PlanTest extends ParentTest {
         planPage.btnMovePlanView();
 
         planPage.publishBtn();
+
+        planPage.imposeECP();
+        planPage.signPlaceholder();
+        planPage.selectCSK("Локальні сертифікати");
+        //planPage.choosePKCertsButton();
+        planPage.uploadFile();
     }
 }

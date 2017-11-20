@@ -97,6 +97,18 @@ public class PlanPage extends ParentPage {
     @FindBy(xpath = ".//button[@ng-if = 'control.publishBtn']")
     private WebElement publishBtn;
 
+    @FindBy(xpath = ".//button[@ng-if = 'control.needEcp']")
+    private WebElement imposeECP;
+
+    @FindBy(id = "signPlaceholder")
+    private WebElement signPlaceholder;
+
+    @FindBy(id = "CAsServersSelect")
+    private WebElement selectCSK;
+
+    @FindBy(id = "ChoosePKCertsButton")
+    private WebElement ChoosePKCertsButton;
+
     public void clickButtonCreatePurchase() {
         actionWithOurElements.clickOnElement(buttonCreatePurchase);
     }
@@ -154,7 +166,7 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.clickOnElement(otherClassifier);
     }
 
-    public void searchOtherClassifier(String number){
+    public void searchOtherClassifier(String number) {
         actionWithOurElements.enterText(searchClassifierText, number);
     }
 
@@ -162,16 +174,16 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.isElementPresent1(visibleCheckbox);
     }
 
-    public void addOtherClassifier(){
+    public void addOtherClassifier() {
         actionWithOurElements.clickOnElement(addClassifier);
     }
 
-    public void clickKekvClassifier(){
+    public void clickKekvClassifier() {
         utils.waitABit(3);
         actionWithOurElements.clickOnElement(kekvClassifier);
     }
 
-    public void searchKekvClassifier(String number){
+    public void searchKekvClassifier(String number) {
         actionWithOurElements.enterText(searchClassifierText, number);
     }
 
@@ -179,7 +191,7 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.isElementPresent1(visibleCheckbox);
     }
 
-    public void addKekvClassifier(){
+    public void addKekvClassifier() {
         actionWithOurElements.clickOnElement(addClassifier);
     }
 
@@ -194,23 +206,23 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.clickOnElement(addProcurementSubject0);
     }
 
-    public void procurementSubjectDescription00(String text){
+    public void procurementSubjectDescription00(String text) {
         actionWithOurElements.enterText(procurementSubjectDescription00, text);
     }
 
-    public void procurementSubjectQuantity00(String number){
+    public void procurementSubjectQuantity00(String number) {
         actionWithOurElements.enterText(procurementSubjectQuantity00, number);
     }
 
-    public void selectUnit00(String valueOfType){
+    public void selectUnit00(String valueOfType) {
         actionWithOurElements.selectValueInDropDownByValue(selectUnit00, valueOfType);
     }
 
-    public void clickClassifier212015_(){
+    public void clickClassifier212015_() {
         actionWithOurElements.clickOnElement(cls_click_);
     }
 
-    public void btnOtherClassifier(){
+    public void btnOtherClassifier() {
         utils.waitABit(3);
         actionWithOurElements.clickOnElement(btnOtherClassifier);
     }
@@ -220,12 +232,33 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.clickOnElement(update00);
     }
 
-    public void btnMovePlanView(){
+    public void btnMovePlanView() {
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(movePlanView);
     }
 
-    public void publishBtn(){
+    public void publishBtn() {
         utils.waitABit(3);
         actionWithOurElements.clickOnElement(publishBtn);
+    }
+
+    public void imposeECP() {
+        actionWithOurElements.clickOnElement(imposeECP);
+    }
+
+    public void signPlaceholder() throws Exception {
+        actionWithOurElements.isElementPresent1(signPlaceholder);
+    }
+
+    public void selectCSK(String nameOfType) {
+        actionWithOurElements.selectTextInDropDownByText(selectCSK, nameOfType);
+    }
+
+//    public void choosePKCertsButton(){
+//        actionWithOurElements.clickOnElement(ChoosePKCertsButton);
+//    }
+
+    public void uploadFile(){
+        actionWithOurElements.uploadFile();
     }
 }

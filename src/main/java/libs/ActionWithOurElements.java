@@ -77,7 +77,7 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
-    public boolean isElementPresent1(WebElement element) throws Exception{
+    public boolean isElementPresent1(WebElement element) throws Exception {
         try {
             logger.info("Set text");
             element.getText();
@@ -201,5 +201,9 @@ public class ActionWithOurElements { //В этот класс мы будем в
             logger.error("Data picker does not work");
             Assert.fail("Data picker does not work");
         }
+    }
+
+    public void uploadFile() {
+        webDriver.findElement(By.id("ChoosePKCertsButton")).sendKeys("././ecp/UserSert.cer");
     }
 }
