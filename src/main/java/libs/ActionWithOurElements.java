@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -38,10 +39,10 @@ public class ActionWithOurElements { //В этот класс мы будем в
             webDriverWait15.until(ExpectedConditions.elementToBeClickable(element));
             element.clear(); //Очисти поле
             element.sendKeys(text); //Введи текст
-            logger.info(text + " was inputted");
+            logger.info("Was inputted - " + text);
         } catch (Exception e) {
-            logger.error("Can not work with element" + element);
-            Assert.fail("Can not work with element" + element);
+            logger.error("Can not work with element - " + text);
+            Assert.fail("Can not work with element - " + text);
         }
     }
 
@@ -56,8 +57,8 @@ public class ActionWithOurElements { //В этот класс мы будем в
             element.click();
             logger.info("Element was clicked");
         } catch (Exception e) {
-            logger.error("Can not work with element" + element);
-            Assert.fail("Can not work element" + element);
+            logger.error("Can not work with element - " + element);
+            Assert.fail("Can not work with element - " + element);
         }
     }
 
@@ -72,31 +73,30 @@ public class ActionWithOurElements { //В этот класс мы будем в
             locator.click();
             logger.info("Element was clicked");
         } catch (Exception e) {
-            logger.info("Element was clicked");
-            Assert.fail("Can not work element" + locator);
+            logger.error("Can not work with element - " + locator);
+            Assert.fail("Can not work with element - " + locator);
         }
     }
 
     public boolean isElementPresent1(WebElement element) throws Exception {
         try {
-            logger.info("Set text");
             element.getText();
-            logger.info("Done");
+            logger.info("Element was found");
             return true;
         } catch (NoSuchElementException e) {
             return false;
         } catch (Exception e) {
-            throw new Exception("Unexpected exception");
+            throw new Exception("Can not work with element - " + element);
         }
     }
 
     public boolean isElementPresent(WebElement element) {
         try {
-            logger.info("Was found " + element);
+            logger.info("Element was found");
             return element.isDisplayed();
         } catch (Exception e) {
-            logger.error("Can not found " + element);
-            Assert.fail("Can not found " + element);
+            logger.error("Can not found element - " + element);
+            Assert.fail("Can not found element - " + element);
             return false;
         }
     }
@@ -114,12 +114,13 @@ public class ActionWithOurElements { //В этот класс мы будем в
         try {
             // будем дожидаться появление елемента
             // зачеркнутый метод это имееться ввиду что он рабочий но есть еще новей
+            webDriverWait15.until(ExpectedConditions.textToBePresentInElement(By.xpath(xPath), text));
             String textFromElement = webDriver.findElement(By.xpath(xPath)).getText();
             Assert.assertEquals(textFromElement, text, "Text in element not mathed"); //Сравнивает фактич из ожидаемым
             return true;
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            logger.error("Can not work with element - " + text);
+            Assert.fail("Can not work with element - " + text);
         }
         return false;
     }
@@ -136,10 +137,10 @@ public class ActionWithOurElements { //В этот класс мы будем в
             // Выбери нам из текста
             optionsFromDropDown.selectByVisibleText(text);
             //optionsFromDropDown.selectByValue(text);
-            logger.info(text + " was selected si DropDown by Text");
+            logger.info("Was selected is DropDown by text - " + text);
         } catch (Exception e) {
-            logger.error("Can not work with DropDown");
-            Assert.fail("Can not work with DropDown");
+            logger.error("Can not work with DropDown - " + text);
+            Assert.fail("Can not work with DropDown - " + text);
         }
     }
 
@@ -151,10 +152,10 @@ public class ActionWithOurElements { //В этот класс мы будем в
             // Выбери нам из value
             // select by value - работает быстрей в разы!!
             optionsFromDropDown.selectByValue(text);
-            logger.info(text + " was selected si DropDown by value");
+            logger.info("Was selected is DropDown by value - " + text);
         } catch (Exception e) {
-            logger.error("Can not work with DropDown");
-            Assert.fail("Can not work with DropDown");
+            logger.error("Can not work with DropDown - " + text);
+            Assert.fail("Can not work with DropDown - " + text);
         }
     }
 
@@ -203,7 +204,8 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
-    public void uploadFile() {
-        webDriver.findElement(By.id("ChoosePKCertsButton")).sendKeys("././ecp/UserSert.cer");
+    public void uploadFile(String path) {
+        File uploadFile = new File(path);
+        webDriver.findElement(By.xpath(".//input[@type ='file']")).sendKeys(uploadFile.getAbsolutePath());
     }
 }

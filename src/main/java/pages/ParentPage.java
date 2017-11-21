@@ -34,9 +34,9 @@ public class ParentPage {
     public void open(String url) { //создаем метод open и в него передаем Тип String с именем url
         try {
             webDriver.get(url); //открываем страницу
-            logger.info("Page was opened" + url);
+            logger.info("Page was opened - " + url);
         } catch (Exception e) {
-            logger.error("Page can not opened" + url);
+            logger.error("Page can not opened - " + url);
             //Assert.fail пишет текст в TestNG ЛОГ который будет использоваться для отчетов, и помимо этого он тест останавливает
             //Assert любой из них при негативном тесте завершает работы теста и пишет красным
             Assert.fail("Page can not opened" + url);
@@ -53,8 +53,8 @@ public class ParentPage {
         try {
             Assert.assertEquals(expectedTitle, webDriver.getTitle(), "Title not matched");
         } catch (Exception e) {
-            logger.error("Can not work with Title");
-            Assert.fail("Can not work with Title");
+            logger.error("Can not work with title");
+            Assert.fail("Can not work with title");
         }
     }
 }

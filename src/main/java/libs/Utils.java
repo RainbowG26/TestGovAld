@@ -41,7 +41,7 @@ public class Utils {
      */
     //Статический член 'libs.Utils.waitABit (int)' обращается через ссылку экземпляра меньше
     //Метод waitABit Static, он напрямую вызывается без приложения к конкретному объекту этого класса
-    public static void waitABit(int second) { //Метод останавливает все процессы в джава
+    public void waitABit(int second) { //Метод останавливает все процессы в джава
         try {
             TimeUnit.SECONDS.sleep(second);
         } catch (InterruptedException e) {
@@ -52,12 +52,20 @@ public class Utils {
     //str formatter java - форматер в строку, js.executeScript java
 
     public void setDataPicker(String id, String value) {
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
-        js.executeScript("SetDateTimePickerValue(\'" + id + "\',\'" + value + "\')");
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) webDriver;
+            js.executeScript("SetDateTimePickerValue(\'" + id + "\',\'" + value + "\')");
+        } catch (JavascriptException e) {
+            e.printStackTrace();
+        }
     }
 
     public void scrollPage() {
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
-        js.executeScript("window.scrollBy(0,250)", "");
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) webDriver;
+            js.executeScript("window.scrollBy(0,250)", "");
+        } catch (JavascriptException e) {
+            e.printStackTrace();
+        }
     }
 }

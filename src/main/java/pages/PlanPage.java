@@ -1,8 +1,11 @@
 package pages;
 
+import libs.Fff;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static libs.Fff.*;
 
 public class PlanPage extends ParentPage {
 
@@ -99,9 +102,6 @@ public class PlanPage extends ParentPage {
 
     @FindBy(xpath = ".//button[@ng-if = 'control.needEcp']")
     private WebElement imposeECP;
-
-    @FindBy(id = "signPlaceholder")
-    private WebElement signPlaceholder;
 
     @FindBy(id = "CAsServersSelect")
     private WebElement selectCSK;
@@ -246,19 +246,16 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.clickOnElement(imposeECP);
     }
 
-    public void signPlaceholder() throws Exception {
-        actionWithOurElements.isElementPresent1(signPlaceholder);
-    }
-
     public void selectCSK(String nameOfType) {
+        utils.waitABit(10);
         actionWithOurElements.selectTextInDropDownByText(selectCSK, nameOfType);
     }
 
-//    public void choosePKCertsButton(){
-//        actionWithOurElements.clickOnElement(ChoosePKCertsButton);
-//    }
+    public void choosePKCertsButton() {
+        actionWithOurElements.clickOnElement(ChoosePKCertsButton);
+    }
 
-    public void uploadFile(){
-        actionWithOurElements.uploadFile();
+    public void uploadFile(String path1) {
+        actionWithOurElements.uploadFile(path1);
     }
 }
