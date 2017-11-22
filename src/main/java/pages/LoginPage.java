@@ -44,11 +44,11 @@ public class LoginPage extends ParentPage {
      */
 
     public void clickloginPopUpWindow() {
-        actionWithOurElements.clickOnElementByLocator(clickloginPopUp);
+        actionWithOurElements.clickOnElement(clickloginPopUp);
     }
 
     public void clickButtonLoginForm() {
-        actionWithOurElements.clickOnElementByLocator(clickButtonLogin);
+        actionWithOurElements.clickOnElement(clickButtonLogin);
     }
 
     public void enterLoginToInput(String login) {

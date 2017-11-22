@@ -1,11 +1,9 @@
 package pages;
 
-import libs.Fff;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import static libs.Fff.*;
 
 public class PlanPage extends ParentPage {
 
@@ -133,8 +131,8 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.selectValueInDropDownByValue(selectCurrencies, valueOfType);
     }
 
-    public void planStartCalendar() {
-        actionWithOurElements.inputCalendarDataTime();
+    public void planStartCalendar(int minute) {
+        actionWithOurElements.setDate(planStartCalendar, minute);
     }
 
     public void selectYear(String valueOfType) {

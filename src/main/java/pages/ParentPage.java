@@ -37,7 +37,7 @@ public class ParentPage {
             logger.info("Page was opened - " + url);
         } catch (Exception e) {
             logger.error("Page can not opened - " + url);
-            //Assert.fail пишет текст в TestNG ЛОГ который будет использоваться для отчетов, и помимо этого он тест останавливает
+            //Assert.fail пишет текст в Junit ЛОГ который будет использоваться для отчетов, и помимо этого он тест останавливает
             //Assert любой из них при негативном тесте завершает работы теста и пишет красным
             Assert.fail("Page can not opened" + url);
         }
