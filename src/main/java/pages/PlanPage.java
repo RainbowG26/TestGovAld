@@ -1,13 +1,14 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class PlanPage extends ParentPage {
 
-    public PlanPage(WebDriver webDriver) {
-        super(webDriver);
+    public PlanPage(WebDriver driver) {
+        super(driver);
     }
 
     @FindBy(id = "btn_create_purchase")
@@ -55,9 +56,6 @@ public class PlanPage extends ParentPage {
     @FindBy(xpath = ".//button[@itemid = 'otherClassifier']")
     private WebElement otherClassifier;
 
-    @FindBy(xpath = ".//*[contains(@id,'anchor')]")
-    private WebElement visibleCheckbox1;
-
     @FindBy(xpath = ".//button[@itemid = 'kekvClassifier']")
     private WebElement kekvClassifier;
 
@@ -76,6 +74,9 @@ public class PlanPage extends ParentPage {
     @FindBy(xpath = ".//select[@class='form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required']")
     private WebElement selectUnit00;
 
+    @FindBy(id = "cls_click_")
+    private WebElement cls_click_;
+
     @FindBy(id = "btn_otherClassifier")
     private WebElement btnOtherClassifier;
 
@@ -93,6 +94,18 @@ public class PlanPage extends ParentPage {
 
     @FindBy(id = "movePlanView")
     private WebElement movePlanView;
+
+    @FindBy(xpath = ".//button[@ng-if = 'control.publishBtn']")
+    private WebElement publishBtn;
+
+    @FindBy(xpath = ".//button[@ng-if = 'control.needEcp']")
+    private WebElement imposeECP;
+
+    @FindBy(id = "CAsServersSelect")
+    private WebElement selectCSK;
+
+    @FindBy(id = "ChoosePKCertsButton")
+    private WebElement ChoosePKCertsButton;
 
     public void clickButtonCreatePurchase() {
         actionWithOurElements.clickOnElement(buttonCreatePurchase);
@@ -118,8 +131,8 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.selectValueInDropDownByValue(selectCurrencies, valueOfType);
     }
 
-    public void planStartCalendar() {
-        actionWithOurElements.inputCalendarDataTime();
+    public void planStartCalendar(int minute) {
+        actionWithOurElements.setDate(planStartCalendar, minute);
     }
 
     public void selectYear(String valueOfType) {
@@ -138,27 +151,109 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.enterText(searchClassifierText, number);
     }
 
-//    public void waitElementClassifier(int second){
-//        utils.waitABit(3);
-//    }
-
-    public void isElementClassifierId() {
-        actionWithOurElements.isElementPresent(visibleCheckbox);
+    public void elementPresentClassifierId() throws Exception {
+        actionWithOurElements.isElementPresent1(visibleCheckbox);
     }
 
     public void addClassifier() {
         actionWithOurElements.clickOnElement(addClassifier);
     }
 
-    public void clickOtherClassifier(){
+    public void clickOtherClassifier() {
+        utils.waitABit(3); //Метод waitABit Static, он напрямую вызывается без приложения к конкретному объекту этого класса
         actionWithOurElements.clickOnElement(otherClassifier);
     }
 
-    public void searhOtherClassifier(String number){
+    public void searchOtherClassifier(String number) {
         actionWithOurElements.enterText(searchClassifierText, number);
     }
 
-    public void isElementOtherClassifierId(){
-        actionWithOurElements.isElementPresent(visibleCheckbox1);
+    public void elementPresentOtherClassifierId() throws Exception {
+        actionWithOurElements.isElementPresent1(visibleCheckbox);
+    }
+
+    public void addOtherClassifier() {
+        actionWithOurElements.clickOnElement(addClassifier);
+    }
+
+    public void clickKekvClassifier() {
+        utils.waitABit(3);
+        actionWithOurElements.clickOnElement(kekvClassifier);
+    }
+
+    public void searchKekvClassifier(String number) {
+        actionWithOurElements.enterText(searchClassifierText, number);
+    }
+
+    public void elementPresentKekvClassifier() throws Exception {
+        actionWithOurElements.isElementPresent1(visibleCheckbox);
+    }
+
+    public void addKekvClassifier() {
+        actionWithOurElements.clickOnElement(addClassifier);
+    }
+
+    public void saveChangesPlanNextStep() {
+        utils.scrollPage();
+        utils.waitABit(3);
+        actionWithOurElements.clickOnElement(saveChangesPlanNextStep);
+    }
+
+    public void addProcurementSubject0() {
+        utils.waitABit(3);
+        actionWithOurElements.clickOnElement(addProcurementSubject0);
+    }
+
+    public void procurementSubjectDescription00(String text) {
+        actionWithOurElements.enterText(procurementSubjectDescription00, text);
+    }
+
+    public void procurementSubjectQuantity00(String number) {
+        actionWithOurElements.enterText(procurementSubjectQuantity00, number);
+    }
+
+    public void selectUnit00(String valueOfType) {
+        actionWithOurElements.selectValueInDropDownByValue(selectUnit00, valueOfType);
+    }
+
+    public void clickClassifier212015_() {
+        actionWithOurElements.clickOnElement(cls_click_);
+    }
+
+    public void btnOtherClassifier() {
+        utils.waitABit(3);
+        actionWithOurElements.clickOnElement(btnOtherClassifier);
+    }
+
+    public void clickUpdate00() throws Exception {
+        utils.waitABit(3);
+        actionWithOurElements.clickOnElement(update00);
+    }
+
+    public void btnMovePlanView() {
+        utils.waitABit(5);
+        actionWithOurElements.clickOnElement(movePlanView);
+    }
+
+    public void publishBtn() {
+        utils.waitABit(3);
+        actionWithOurElements.clickOnElement(publishBtn);
+    }
+
+    public void imposeECP() {
+        actionWithOurElements.clickOnElement(imposeECP);
+    }
+
+    public void selectCSK(String nameOfType) {
+        utils.waitABit(10);
+        actionWithOurElements.selectTextInDropDownByText(selectCSK, nameOfType);
+    }
+
+    public void choosePKCertsButton() {
+        actionWithOurElements.clickOnElement(ChoosePKCertsButton);
+    }
+
+    public void uploadFile(String path1) {
+        actionWithOurElements.uploadFile(path1);
     }
 }

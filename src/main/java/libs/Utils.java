@@ -11,8 +11,10 @@ import java.util.concurrent.TimeUnit;
 public class Utils {
 
     private Logger logger;
+    WebDriver webDriver;
 
-    public Utils() { //Создали конструктор для работы с логом
+    public Utils(WebDriver driver) { //Создали конструктор для работы с логом
+        this.webDriver = driver;
         logger = Logger.getLogger(getClass());
     }
 
@@ -37,10 +39,32 @@ public class Utils {
      *
      * @param second
      */
+    //Статический член 'libs.Utils.waitABit (int)' обращается через ссылку экземпляра меньше
+    //Метод waitABit Static, он напрямую вызывается без приложения к конкретному объекту этого класса
     public void waitABit(int second) { //Метод останавливает все процессы в джава
         try {
             TimeUnit.SECONDS.sleep(second);
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //str formatter java - форматер в строку, js.executeScript java
+
+    public void setDataPicker(String id, String value) {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) webDriver;
+            js.executeScript("SetDateTimePickerValue(\'" + id + "\',\'" + value + "\')");
+        } catch (JavascriptException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void scrollPage() {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) webDriver;
+            js.executeScript("window.scrollBy(0,250)", "");
+        } catch (JavascriptException e) {
             e.printStackTrace();
         }
     }

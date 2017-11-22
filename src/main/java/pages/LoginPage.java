@@ -6,8 +6,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
 
-    public LoginPage(WebDriver webDriver) { //Мы передадим webDriver там где мы создаем/тестов
-        super(webDriver); //его мы передадим в родительский класс ParentPage
+    public LoginPage(WebDriver driver) { //Мы передадим webDriver там где мы создаем/тестов
+        super(driver); //его мы передадим в родительский класс ParentPage
     }
 
     @FindBy(id = "liLoginNoAuthenticated")
@@ -44,11 +44,11 @@ public class LoginPage extends ParentPage {
      */
 
     public void clickloginPopUpWindow() {
-        actionWithOurElements.clickOnElementByLocator(clickloginPopUp);
+        actionWithOurElements.clickOnElement(clickloginPopUp);
     }
 
     public void clickButtonLoginForm() {
-        actionWithOurElements.clickOnElementByLocator(clickButtonLogin);
+        actionWithOurElements.clickOnElement(clickButtonLogin);
     }
 
     public void enterLoginToInput(String login) {

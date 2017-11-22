@@ -2,27 +2,31 @@ package libs;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class ActionWithOurElements { //В этот класс мы будем выносить все елементы страницы
 
     WebDriver webDriver;
     Logger logger;
     WebDriverWait webDriverWait15;
+    Utils utils;
 
-    public ActionWithOurElements(WebDriver webDriver) {
-        this.webDriver = webDriver;
+
+    public ActionWithOurElements(WebDriver driver) {
+        this.webDriver = driver;
         logger = Logger.getLogger(getClass());
         webDriverWait15 = new WebDriverWait(webDriver, 15); //Драйвер жди 15 секунд каждые пол секунды он будет счелкать по кнопке
+        utils = new Utils(webDriver);
     }
 
     /**
@@ -38,10 +42,10 @@ public class ActionWithOurElements { //В этот класс мы будем в
             webDriverWait15.until(ExpectedConditions.elementToBeClickable(element));
             element.clear(); //Очисти поле
             element.sendKeys(text); //Введи текст
-            logger.info(text + " was inputted");
+            logger.info("Was inputted - " + text);
         } catch (Exception e) {
-            logger.error("Can not work with element" + element);
-            Assert.fail("Can not work with element" + element);
+            logger.error("Can not work with element - " + text);
+            Assert.fail("Can not work with element - " + text);
         }
     }
 
@@ -56,8 +60,8 @@ public class ActionWithOurElements { //В этот класс мы будем в
             element.click();
             logger.info("Element was clicked");
         } catch (Exception e) {
-            logger.error("Can not work with element" + element);
-            Assert.fail("Can not work element" + element);
+            logger.error("Can not work with element - " + element);
+            Assert.fail("Can not work with element - " + element);
         }
     }
 
@@ -72,33 +76,30 @@ public class ActionWithOurElements { //В этот класс мы будем в
             locator.click();
             logger.info("Element was clicked");
         } catch (Exception e) {
-            logger.info("Element was clicked");
-            Assert.fail("Can not work element" + locator);
+            logger.error("Can not work with element - " + locator);
+            Assert.fail("Can not work with element - " + locator);
         }
     }
 
-    /**
-     * Method is element with locator
-     *
-     * @param locator
-     * @param text
-     * @return
-     */
-    public boolean isElementPresent(String locator, String text) {
+    public boolean isElementPresent1(WebElement element) throws Exception {
         try {
-            return webDriver.findElement(By.xpath(locator)).isDisplayed();
-        } catch (Exception e) {
+            element.getText();
+            logger.info("Element was found");
+            return true;
+        } catch (NoSuchElementException e) {
             return false;
+        } catch (Exception e) {
+            throw new Exception("Can not work with element - " + element);
         }
     }
 
     public boolean isElementPresent(WebElement element) {
         try {
-            logger.info("Was found " + element);
+            logger.info("Element was found");
             return element.isDisplayed();
         } catch (Exception e) {
-            logger.error("Can not found " + element);
-            Assert.fail("Can not found " + element);
+            logger.error("Can not found element - " + element);
+            Assert.fail("Can not found element - " + element);
             return false;
         }
     }
@@ -116,15 +117,17 @@ public class ActionWithOurElements { //В этот класс мы будем в
         try {
             // будем дожидаться появление елемента
             // зачеркнутый метод это имееться ввиду что он рабочий но есть еще новей
+            webDriverWait15.until(ExpectedConditions.textToBePresentInElement(By.xpath(xPath), text));
             String textFromElement = webDriver.findElement(By.xpath(xPath)).getText();
             Assert.assertEquals(textFromElement, text, "Text in element not mathed"); //Сравнивает фактич из ожидаемым
             return true;
         } catch (Exception e) {
-            logger.error("Can not work with element");
-            Assert.fail("Can not work with element");
+            logger.error("Can not work with element - " + text);
+            Assert.fail("Can not work with element - " + text);
         }
         return false;
     }
+
 
     // передать в этот метод в каком елементе что выбрать
     public void selectTextInDropDownByText(WebElement dropDown, String text) {
@@ -137,10 +140,10 @@ public class ActionWithOurElements { //В этот класс мы будем в
             // Выбери нам из текста
             optionsFromDropDown.selectByVisibleText(text);
             //optionsFromDropDown.selectByValue(text);
-            logger.info(text + " was selected si DropDown by Text");
+            logger.info("Was selected is DropDown by text - " + text);
         } catch (Exception e) {
-            logger.error("Can not work with DropDown");
-            Assert.fail("Can not work with DropDown");
+            logger.error("Can not work with DropDown - " + text);
+            Assert.fail("Can not work with DropDown - " + text);
         }
     }
 
@@ -152,10 +155,10 @@ public class ActionWithOurElements { //В этот класс мы будем в
             // Выбери нам из value
             // select by value - работает быстрей в разы!!
             optionsFromDropDown.selectByValue(text);
-            logger.info(text + " was selected si DropDown by value");
+            logger.info("Was selected is DropDown by value - " + text);
         } catch (Exception e) {
-            logger.error("Can not work with DropDown");
-            Assert.fail("Can not work with DropDown");
+            logger.error("Can not work with DropDown - " + text);
+            Assert.fail("Can not work with DropDown - " + text);
         }
     }
 
@@ -190,24 +193,35 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
-    //str formatter java - форматер в строку, js.executeScript java
-
-    public void setDataPicker(String id, String value) {
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
-        js.executeScript("SetDateTimePickerValue(\'" + id + "\',\'" + value + "\')");
-    }
-
     public void inputCalendarDataTime() {
         try {
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime currentDate = LocalDateTime.now();
             //запуск с консоли - SetDateTimePickerValue('planStart','2017-11-14 17:52:07')
-            setDataPicker("planStart", (currentDate.plusMinutes(2)).format(dateFormat));
+            utils.setDataPicker("planStart", (currentDate.plusMinutes(2)).format(dateFormat));
             //setDataPicker("period_enquiry_end", (currentDate.plusMinutes(15)).format(dateFormat));
             logger.info("Data picker work");
         } catch (Exception e) {
             logger.error("Data picker does not work");
             Assert.fail("Data picker does not work");
         }
+    }
+
+    public String setDate(WebElement element, int minute) {
+        //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime currentDate = LocalDateTime.now();
+        logger.info("Get current date");
+        //Calendar calendar = new GregorianCalendar();
+        element.sendKeys();
+        logger.info("Add days what we are need: " + minute);
+        return currentDate.plusMinutes(3).format(dateFormat);
+        //calendar.add(Calendar.MINUTE, minute);
+        //return format.format(calendar.getTime());
+    }
+
+    public void uploadFile(String path) {
+        File uploadFile = new File(path);
+        webDriver.findElement(By.xpath(".//input[@type ='file']")).sendKeys(uploadFile.getAbsolutePath());
     }
 }
