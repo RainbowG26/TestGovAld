@@ -15,7 +15,7 @@ public class PlanTest extends ParentTest {
         planPage.inputPlanDescription("Тест Створення Плана закупівель");
         planPage.inputPlanBudget("1000");
         planPage.selectCurrenciesDropDown("string:UAH");
-        planPage.planStartCalendar(2);
+        planPage.planStartCalendar(3);
         planPage.selectYear("number:2017");
         planPage.selectPurchaseType("3");
         planPage.clickClassifier212015();

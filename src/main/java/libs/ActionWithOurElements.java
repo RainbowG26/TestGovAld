@@ -208,16 +208,19 @@ public class ActionWithOurElements { //В этот класс мы будем в
     }
 
     public String setDate(WebElement element, int minute) {
-        //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        logger.info("Get current date");
+//        Calendar calendar = new GregorianCalendar();
+//        element.sendKeys();
+//        logger.info("Add minute what we are need: " + minute);
+//        calendar.add(Calendar.MINUTE, minute);
+//        return format.format(calendar.getTime());
+
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime currentDate = LocalDateTime.now();
-        logger.info("Get current date");
-        //Calendar calendar = new GregorianCalendar();
-        element.sendKeys();
-        logger.info("Add days what we are need: " + minute);
-        return currentDate.plusMinutes(3).format(dateFormat);
-        //calendar.add(Calendar.MINUTE, minute);
-        //return format.format(calendar.getTime());
+        element.sendKeys(currentDate.plusMinutes(minute).format(dateFormat));
+        element.click();
+        return currentDate.format(dateFormat);
     }
 
     public void uploadFile(String path) {
