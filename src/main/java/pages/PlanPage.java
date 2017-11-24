@@ -131,8 +131,12 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.selectValueInDropDownByValue(selectCurrencies, valueOfType);
     }
 
-    public void planStartCalendar(int minute) {
-        actionWithOurElements.setDate(planStartCalendar, minute);
+//    public void planStartCalendar(int minute) {
+//        actionWithOurElements.inputCalendarDataTime(minute);
+//    }
+
+    public void planStartCalendar() {
+        actionWithOurElements.setDate(planStartCalendar);
     }
 
     public void selectYear(String valueOfType) {

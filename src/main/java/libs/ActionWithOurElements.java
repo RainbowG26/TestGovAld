@@ -10,9 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.concurrent.TimeUnit;
 
 public class ActionWithOurElements { //В этот класс мы будем выносить все елементы страницы
 
@@ -193,12 +196,12 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
-    public void inputCalendarDataTime() {
+    public void inputCalendarDataTime(int minute) {
         try {
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime currentDate = LocalDateTime.now();
             //запуск с консоли - SetDateTimePickerValue('planStart','2017-11-14 17:52:07')
-            utils.setDataPicker("planStart", (currentDate.plusMinutes(2)).format(dateFormat));
+            utils.setDataPicker("planStart", (currentDate.plusMinutes(minute)).format(dateFormat));
             //setDataPicker("period_enquiry_end", (currentDate.plusMinutes(15)).format(dateFormat));
             logger.info("Data picker work");
         } catch (Exception e) {
@@ -207,20 +210,23 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
-    public String setDate(WebElement element, int minute) {
-//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        logger.info("Get current date");
-//        Calendar calendar = new GregorianCalendar();
-//        element.sendKeys();
-//        logger.info("Add minute what we are need: " + minute);
-//        calendar.add(Calendar.MINUTE, minute);
-//        return format.format(calendar.getTime());
+    public static String setDate(WebElement element) {
+       // SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //logger.info("Get current date");
+      //  Calendar calendar = new GregorianCalendar();
+        //logger.info("Add minute what we are need: " + minute);
+       // calendar.add(Calendar.MINUTE, minute);
+       // element.sendKeys(format.format());
+        //return format.format(calendar.getTime());
 
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime currentDate = LocalDateTime.now();
-        element.sendKeys(currentDate.plusMinutes(minute).format(dateFormat));
-        element.click();
-        return currentDate.format(dateFormat);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        Calendar calendar = new GregorianCalendar();
+        calendar.add(Calendar.MINUTE, 5);
+        //WebElement element = webDriver.findElement(By.id("planStartCalendar"));
+        element.sendKeys(format.format(calendar.getTime()));
+        // calendar = format.format(calendar.getTime());
+
     }
 
     public void uploadFile(String path) {
