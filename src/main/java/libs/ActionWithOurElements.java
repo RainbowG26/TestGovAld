@@ -8,14 +8,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
+
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.concurrent.TimeUnit;
 
 public class ActionWithOurElements { //В этот класс мы будем выносить все елементы страницы
 
@@ -210,24 +205,12 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
-    public static String setDate(WebElement element) {
-       // SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        //logger.info("Get current date");
-      //  Calendar calendar = new GregorianCalendar();
-        //logger.info("Add minute what we are need: " + minute);
-       // calendar.add(Calendar.MINUTE, minute);
-       // element.sendKeys(format.format());
-        //return format.format(calendar.getTime());
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-        Calendar calendar = new GregorianCalendar();
-        calendar.add(Calendar.MINUTE, 5);
-        //WebElement element = webDriver.findElement(By.id("planStartCalendar"));
-        element.sendKeys(format.format(calendar.getTime()));
-        // calendar = format.format(calendar.getTime());
-
-    }
+//    public void setDate(WebElement element) {
+//        LocalDateTime currentDate = LocalDateTime.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//        LocalDateTime fiveMinutesLater = LocalDateTime.now().plusMinutes(5);
+//        element.sendKeys(currentDate.format(formatter));
+//    }
 
     public void uploadFile(String path) {
         File uploadFile = new File(path);
