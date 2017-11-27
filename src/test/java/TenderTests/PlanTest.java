@@ -51,10 +51,12 @@ public class PlanTest extends ParentTest {
         planPage.imposeECP();
         planPage.selectCSK("Локальні сертифікати");
 
-        planPage.choosePKCertsButton();
-        planPage.downloadFileUserSert("UserSert");
 
-        planPage.choosePKeySelectFileButton();
+        planPage.downloadFileUserSert("UserSert");
         planPage.downloadFilePKey("Key6");
+        planPage.inputPKeyPassword("qwerty");
+        planPage.clickPKeyReadButton();
+
+        planPage.clickSignDataButton();
     }
 }

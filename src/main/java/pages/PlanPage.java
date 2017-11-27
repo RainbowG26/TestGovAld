@@ -105,14 +105,20 @@ public class PlanPage extends ParentPage {
     @FindBy(id = "CAsServersSelect")
     private WebElement selectCSK;
 
-    @FindBy(id = "ChoosePKCertsButton")
-    private WebElement ChoosePKCertsButton;
+    @FindBy(xpath = ".//input[@id = 'ChoosePKCertsInput' and @type = 'file']")
+    private WebElement filePathPKCerts;
 
-    @FindBy(xpath = ".//input[@type ='file']")
-    private WebElement filePath;
+    @FindBy(xpath = ".//input[@id = 'PKeyFileInput' and @type = 'file']")
+    private WebElement filePathPKey;
 
-    @FindBy(id = "PKeySelectFileButton")
-    private WebElement PKeySelectFileButton;
+    @FindBy(id = "PKeyPassword")
+    private WebElement PKeyPassword;
+
+    @FindBy(id = "PKeyReadButton")
+    private WebElement PKeyReadButton;
+
+    @FindBy(id = "SignDataButton")
+    private WebElement SignDataButton;
 
     public void clickButtonCreatePurchase() {
         actionWithOurElements.clickOnElement(buttonCreatePurchase);
@@ -256,19 +262,26 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.selectTextInDropDownByText(selectCSK, nameOfType);
     }
 
-    public void choosePKCertsButton() {
-        actionWithOurElements.clickOnElement(ChoosePKCertsButton);
-    }
 
     public void downloadFileUserSert(String key) throws IOException {
-        actionWithOurElements.downloadFile(filePath, key);
+        actionWithOurElements.downloadFile(filePathPKCerts, key);
     }
 
-    public void choosePKeySelectFileButton() {
-        actionWithOurElements.clickOnElement(PKeySelectFileButton);
-    }
 
     public void downloadFilePKey(String key) throws IOException {
-        actionWithOurElements.downloadFile(filePath, key);
+        actionWithOurElements.downloadFile(filePathPKey, key);
+    }
+
+    public void inputPKeyPassword(String text) {
+        actionWithOurElements.enterText(PKeyPassword, text);
+    }
+
+    public void clickPKeyReadButton() {
+        actionWithOurElements.clickOnElement(PKeyReadButton);
+    }
+
+    public void clickSignDataButton(){
+        utils.waitABit(5);
+        actionWithOurElements.clickOnElement(SignDataButton);
     }
 }
