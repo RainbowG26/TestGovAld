@@ -1,6 +1,5 @@
 package TenderTests;
 
-import libs.Fff;
 import org.junit.Test;
 import parentTest.ParentTest;
 
@@ -51,8 +50,11 @@ public class PlanTest extends ParentTest {
 
         planPage.imposeECP();
         planPage.selectCSK("Локальні сертифікати");
-        planPage.choosePKCertsButton();
 
-        planPage.uploadFile(Fff.ECP);
+        planPage.choosePKCertsButton();
+        planPage.downloadFileUserSert("UserSert");
+
+        planPage.choosePKeySelectFileButton();
+        planPage.downloadFilePKey("Key6");
     }
 }

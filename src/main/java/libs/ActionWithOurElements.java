@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -205,15 +206,20 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
-//    public void setDate(WebElement element) {
-//        LocalDateTime currentDate = LocalDateTime.now();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//        LocalDateTime fiveMinutesLater = LocalDateTime.now().plusMinutes(5);
-//        element.sendKeys(currentDate.format(formatter));
+//    public void uploadFile(String path) throws IOException {
+//        File uploadFile = new File(path);
+//        webDriver.findElement(By.xpath(".//input[@type ='file']")).sendKeys(uploadFile.getAbsolutePath());
+//
 //    }
 
-    public void uploadFile(String path) {
-        File uploadFile = new File(path);
-        webDriver.findElement(By.xpath(".//input[@type ='file']")).sendKeys(uploadFile.getAbsolutePath());
+    public void downloadFile(WebElement element,String key) throws IOException {
+        try {
+            File filePath = new File(ConfigData.getFilePathValue(key));
+            element.sendKeys(filePath.getAbsolutePath());
+            logger.info("File uploaded - " + key);
+        } catch (Exception e) {
+            logger.error("A problem with an element or a key in the ConfigData class");
+            Assert.fail("A problem with an element or a key in the ConfigData class");
+        }
     }
 }

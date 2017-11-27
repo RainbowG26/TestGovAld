@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.IOException;
+
 public class PlanPage extends ParentPage {
 
     public PlanPage(WebDriver driver) {
@@ -105,6 +107,12 @@ public class PlanPage extends ParentPage {
 
     @FindBy(id = "ChoosePKCertsButton")
     private WebElement ChoosePKCertsButton;
+
+    @FindBy(xpath = ".//input[@type ='file']")
+    private WebElement filePath;
+
+    @FindBy(id = "PKeySelectFileButton")
+    private WebElement PKeySelectFileButton;
 
     public void clickButtonCreatePurchase() {
         actionWithOurElements.clickOnElement(buttonCreatePurchase);
@@ -252,7 +260,15 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.clickOnElement(ChoosePKCertsButton);
     }
 
-    public void uploadFile(String path1) {
-        actionWithOurElements.uploadFile(path1);
+    public void downloadFileUserSert(String key) throws IOException {
+        actionWithOurElements.downloadFile(filePath, key);
+    }
+
+    public void choosePKeySelectFileButton() {
+        actionWithOurElements.clickOnElement(PKeySelectFileButton);
+    }
+
+    public void downloadFilePKey(String key) throws IOException {
+        actionWithOurElements.downloadFile(filePath, key);
     }
 }

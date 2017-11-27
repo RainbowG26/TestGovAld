@@ -14,6 +14,7 @@ import java.util.Properties;
 public class ConfigData {
     public static String cfgFile="src/config.properties"; //Path to config.properties file
     public static String uiMappingFile="src/UIMapping.properties";
+    public static String filePath="src/filePath.properties";
 
     /*
      *  Return value from .properties file
@@ -42,9 +43,9 @@ public class ConfigData {
      *  Мы должны позаботиться о типе значения самостоятельно, когда будем использовать значение
      *  данных конфигурации в тесте.
      */
-    public static String getUiMappingValue(String key) throws IOException {
+    public static String getFilePathValue(String key) throws IOException {
     	
-        return(getValueFromFile(key, uiMappingFile));
+        return(getValueFromFile(key, filePath));
     }
 
 
