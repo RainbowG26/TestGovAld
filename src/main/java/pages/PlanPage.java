@@ -96,7 +96,7 @@ public class PlanPage extends ParentPage {
     @FindBy(id = "movePlanView")
     private WebElement movePlanView;
 
-    @FindBy(xpath = ".//button[@ng-if = 'control.publishBtn']")
+    @FindBy(xpath = ".//button[@ng-if = 'control.publishBtn' and @ng-click = 'publishPlan()']")
     private WebElement publishBtn;
 
     @FindBy(xpath = ".//button[@ng-if = 'control.needEcp']")
@@ -119,6 +119,9 @@ public class PlanPage extends ParentPage {
 
     @FindBy(id = "SignDataButton")
     private WebElement SignDataButton;
+
+    @FindBy(xpath = ".//span[contains(text(),'ID:')]")
+    private WebElement displayedIDTender;
 
     public void clickButtonCreatePurchase() {
         actionWithOurElements.clickOnElement(buttonCreatePurchase);
@@ -164,7 +167,7 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.enterText(searchClassifierText, number);
     }
 
-    public void elementPresentClassifierId() throws Exception {
+    public void elementDisplayedClassifierId() throws Exception {
         actionWithOurElements.isElementPresent1(visibleCheckbox);
     }
 
@@ -173,7 +176,7 @@ public class PlanPage extends ParentPage {
     }
 
     public void clickOtherClassifier() {
-        utils.waitABit(3); //Метод waitABit Static, он напрямую вызывается без приложения к конкретному объекту этого класса
+        utils.waitABit(5); //Метод waitABit Static, он напрямую вызывается без приложения к конкретному объекту этого класса
         actionWithOurElements.clickOnElement(otherClassifier);
     }
 
@@ -181,7 +184,7 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.enterText(searchClassifierText, number);
     }
 
-    public void elementPresentOtherClassifierId() throws Exception {
+    public void elementDisplayedOtherClassifierId() throws Exception {
         actionWithOurElements.isElementPresent1(visibleCheckbox);
     }
 
@@ -190,7 +193,7 @@ public class PlanPage extends ParentPage {
     }
 
     public void clickKekvClassifier() {
-        utils.waitABit(3);
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(kekvClassifier);
     }
 
@@ -198,7 +201,7 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.enterText(searchClassifierText, number);
     }
 
-    public void elementPresentKekvClassifier() throws Exception {
+    public void elementDisplayedKekvClassifier() throws Exception {
         actionWithOurElements.isElementPresent1(visibleCheckbox);
     }
 
@@ -208,12 +211,12 @@ public class PlanPage extends ParentPage {
 
     public void saveChangesPlanNextStep() {
         utils.scrollPage();
-        utils.waitABit(3);
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(saveChangesPlanNextStep);
     }
 
     public void addProcurementSubject0() {
-        utils.waitABit(3);
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(addProcurementSubject0);
     }
 
@@ -234,12 +237,12 @@ public class PlanPage extends ParentPage {
     }
 
     public void btnOtherClassifier() {
-        utils.waitABit(3);
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(btnOtherClassifier);
     }
 
     public void clickUpdate00() throws Exception {
-        utils.waitABit(3);
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(update00);
     }
 
@@ -249,7 +252,7 @@ public class PlanPage extends ParentPage {
     }
 
     public void publishBtn() {
-        utils.waitABit(3);
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(publishBtn);
     }
 
@@ -283,5 +286,10 @@ public class PlanPage extends ParentPage {
     public void clickSignDataButton(){
         utils.waitABit(5);
         actionWithOurElements.clickOnElement(SignDataButton);
+    }
+
+    public void elementDisplayedIDTender() throws Exception {
+        utils.waitABit(5);
+        actionWithOurElements.isElementPresent1(displayedIDTender);
     }
 }
