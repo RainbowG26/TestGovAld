@@ -1,9 +1,10 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.io.IOException;
 
 public class PlanPage extends ParentPage {
 
@@ -95,7 +96,7 @@ public class PlanPage extends ParentPage {
     @FindBy(id = "movePlanView")
     private WebElement movePlanView;
 
-    @FindBy(xpath = ".//button[@ng-if = 'control.publishBtn']")
+    @FindBy(xpath = ".//button[@ng-if = 'control.publishBtn' and @ng-click = 'publishPlan()']")
     private WebElement publishBtn;
 
     @FindBy(xpath = ".//button[@ng-if = 'control.needEcp']")
@@ -104,8 +105,23 @@ public class PlanPage extends ParentPage {
     @FindBy(id = "CAsServersSelect")
     private WebElement selectCSK;
 
-    @FindBy(id = "ChoosePKCertsButton")
-    private WebElement ChoosePKCertsButton;
+    @FindBy(xpath = ".//input[@id = 'ChoosePKCertsInput' and @type = 'file']")
+    private WebElement filePathPKCerts;
+
+    @FindBy(xpath = ".//input[@id = 'PKeyFileInput' and @type = 'file']")
+    private WebElement filePathPKey;
+
+    @FindBy(id = "PKeyPassword")
+    private WebElement PKeyPassword;
+
+    @FindBy(id = "PKeyReadButton")
+    private WebElement PKeyReadButton;
+
+    @FindBy(id = "SignDataButton")
+    private WebElement SignDataButton;
+
+    @FindBy(xpath = ".//span[contains(text(),'ID:')]")
+    private WebElement displayedIDTender;
 
     public void clickButtonCreatePurchase() {
         actionWithOurElements.clickOnElement(buttonCreatePurchase);
@@ -132,7 +148,7 @@ public class PlanPage extends ParentPage {
     }
 
     public void planStartCalendar(int minute) {
-        actionWithOurElements.setDate(planStartCalendar, minute);
+        actionWithOurElements.inputCalendarDataTime(minute);
     }
 
     public void selectYear(String valueOfType) {
@@ -151,7 +167,7 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.enterText(searchClassifierText, number);
     }
 
-    public void elementPresentClassifierId() throws Exception {
+    public void elementDisplayedClassifierId() throws Exception {
         actionWithOurElements.isElementPresent1(visibleCheckbox);
     }
 
@@ -160,7 +176,7 @@ public class PlanPage extends ParentPage {
     }
 
     public void clickOtherClassifier() {
-        utils.waitABit(3); //Метод waitABit Static, он напрямую вызывается без приложения к конкретному объекту этого класса
+        utils.waitABit(5); //Метод waitABit Static, он напрямую вызывается без приложения к конкретному объекту этого класса
         actionWithOurElements.clickOnElement(otherClassifier);
     }
 
@@ -168,7 +184,7 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.enterText(searchClassifierText, number);
     }
 
-    public void elementPresentOtherClassifierId() throws Exception {
+    public void elementDisplayedOtherClassifierId() throws Exception {
         actionWithOurElements.isElementPresent1(visibleCheckbox);
     }
 
@@ -177,7 +193,7 @@ public class PlanPage extends ParentPage {
     }
 
     public void clickKekvClassifier() {
-        utils.waitABit(3);
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(kekvClassifier);
     }
 
@@ -185,7 +201,7 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.enterText(searchClassifierText, number);
     }
 
-    public void elementPresentKekvClassifier() throws Exception {
+    public void elementDisplayedKekvClassifier() throws Exception {
         actionWithOurElements.isElementPresent1(visibleCheckbox);
     }
 
@@ -195,12 +211,12 @@ public class PlanPage extends ParentPage {
 
     public void saveChangesPlanNextStep() {
         utils.scrollPage();
-        utils.waitABit(3);
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(saveChangesPlanNextStep);
     }
 
     public void addProcurementSubject0() {
-        utils.waitABit(3);
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(addProcurementSubject0);
     }
 
@@ -221,12 +237,12 @@ public class PlanPage extends ParentPage {
     }
 
     public void btnOtherClassifier() {
-        utils.waitABit(3);
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(btnOtherClassifier);
     }
 
     public void clickUpdate00() throws Exception {
-        utils.waitABit(3);
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(update00);
     }
 
@@ -236,7 +252,7 @@ public class PlanPage extends ParentPage {
     }
 
     public void publishBtn() {
-        utils.waitABit(3);
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(publishBtn);
     }
 
@@ -249,11 +265,31 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.selectTextInDropDownByText(selectCSK, nameOfType);
     }
 
-    public void choosePKCertsButton() {
-        actionWithOurElements.clickOnElement(ChoosePKCertsButton);
+
+    public void downloadFileUserSert(String key) throws IOException {
+        actionWithOurElements.downloadFile(filePathPKCerts, key);
     }
 
-    public void uploadFile(String path1) {
-        actionWithOurElements.uploadFile(path1);
+
+    public void downloadFilePKey(String key) throws IOException {
+        actionWithOurElements.downloadFile(filePathPKey, key);
+    }
+
+    public void inputPKeyPassword(String text) {
+        actionWithOurElements.enterText(PKeyPassword, text);
+    }
+
+    public void clickPKeyReadButton() {
+        actionWithOurElements.clickOnElement(PKeyReadButton);
+    }
+
+    public void clickSignDataButton(){
+        utils.waitABit(5);
+        actionWithOurElements.clickOnElement(SignDataButton);
+    }
+
+    public void elementDisplayedIDTender() throws Exception {
+        utils.waitABit(5);
+        actionWithOurElements.isElementPresent1(displayedIDTender);
     }
 }

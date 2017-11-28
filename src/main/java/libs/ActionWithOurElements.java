@@ -8,11 +8,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class ActionWithOurElements { //В этот класс мы будем выносить все елементы страницы
 
@@ -193,12 +192,12 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
-    public void inputCalendarDataTime() {
+    public void inputCalendarDataTime(int minute) {
         try {
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime currentDate = LocalDateTime.now();
             //запуск с консоли - SetDateTimePickerValue('planStart','2017-11-14 17:52:07')
-            utils.setDataPicker("planStart", (currentDate.plusMinutes(2)).format(dateFormat));
+            utils.setDataPicker("planStart", (currentDate.plusMinutes(minute)).format(dateFormat));
             //setDataPicker("period_enquiry_end", (currentDate.plusMinutes(15)).format(dateFormat));
             logger.info("Data picker work");
         } catch (Exception e) {
@@ -207,21 +206,20 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
-    public String setDate(WebElement element, int minute) {
-        //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime currentDate = LocalDateTime.now();
-        logger.info("Get current date");
-        //Calendar calendar = new GregorianCalendar();
-        element.sendKeys();
-        logger.info("Add days what we are need: " + minute);
-        return currentDate.plusMinutes(3).format(dateFormat);
-        //calendar.add(Calendar.MINUTE, minute);
-        //return format.format(calendar.getTime());
-    }
+//    public void uploadFile(String path) throws IOException {
+//        File uploadFile = new File(path);
+//        webDriver.findElement(By.xpath(".//input[@type ='file']")).sendKeys(uploadFile.getAbsolutePath());
+//
+//    }
 
-    public void uploadFile(String path) {
-        File uploadFile = new File(path);
-        webDriver.findElement(By.xpath(".//input[@type ='file']")).sendKeys(uploadFile.getAbsolutePath());
+    public void downloadFile(WebElement element,String key) throws IOException {
+        try {
+            File filePath = new File(ConfigData.getFilePathValue(key));
+            element.sendKeys(filePath.getAbsolutePath());
+            logger.info("File uploaded - " + key);
+        } catch (Exception e) {
+            logger.error("A problem with an element or a key in the ConfigData class");
+            Assert.fail("A problem with an element or a key in the ConfigData class");
+        }
     }
 }

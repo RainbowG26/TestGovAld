@@ -82,16 +82,17 @@ public class LoginPage extends ParentPage {
         return actionWithOurElements.isElementPresent(buttonSubmitLogin);
     }
 
-    public boolean isNameMyTenderPresent(){
+    public boolean isNameMyTenderPresent() {
         return actionWithOurElements.isElementPresent(NameMyTenders);
     }
 
-    public boolean isPanelBodyPresent(){
+    public boolean isPanelBodyPresent() {
         return actionWithOurElements.isElementPresent(PanelBody);
     }
 
-    public void loginUser(String login, String password){
+    public void loginUser(String login, String password) {
         openLoginPage();
+        utils.waitABit(5);
         clickloginPopUpWindow();
         clickButtonLoginForm();
         enterLoginToInput(login);
