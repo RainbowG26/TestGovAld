@@ -12,20 +12,14 @@ public class PlanPage extends ParentPage {
         super(driver);
     }
 
-    @FindBy(id = "btn_create_purchase")
-    private WebElement buttonCreatePurchase;
-
-    @FindBy(xpath = ".//a[@href='/Plan/Create']")
-    private WebElement planPurchase;
-
     @FindBy(id = "planTitle")
-    private WebElement planTitle;
+    private WebElement fieldTitle;
 
     @FindBy(id = "planDescription")
-    private WebElement planDescription;
+    private WebElement fieldDescription;
 
     @FindBy(id = "planBudget")
-    private WebElement planBudget;
+    private WebElement fieldBudget;
 
     @FindBy(id = "select_currencies")
     private WebElement selectCurrencies;
@@ -112,35 +106,27 @@ public class PlanPage extends ParentPage {
     private WebElement filePathPKey;
 
     @FindBy(id = "PKeyPassword")
-    private WebElement PKeyPassword;
+    private WebElement pKeyPassword;
 
     @FindBy(id = "PKeyReadButton")
-    private WebElement PKeyReadButton;
+    private WebElement pKeyReadButton;
 
     @FindBy(id = "SignDataButton")
-    private WebElement SignDataButton;
+    private WebElement signDataButton;
 
     @FindBy(xpath = ".//span[contains(text(),'ID:')]")
     private WebElement displayedIDTender;
 
-    public void clickButtonCreatePurchase() {
-        actionWithOurElements.clickOnElement(buttonCreatePurchase);
+    public void inputTitle(String text) {
+        actionWithOurElements.enterText(fieldTitle, text);
     }
 
-    public void clickPlanPurchase() {
-        actionWithOurElements.clickOnElementByLocator(planPurchase);
+    public void inputDescription(String text) {
+        actionWithOurElements.enterText(fieldDescription, text);
     }
 
-    public void inputPlanTitle(String text) {
-        actionWithOurElements.enterText(planTitle, text);
-    }
-
-    public void inputPlanDescription(String text) {
-        actionWithOurElements.enterText(planDescription, text);
-    }
-
-    public void inputPlanBudget(String text) {
-        actionWithOurElements.enterText(planBudget, text);
+    public void inputBudget(String text) {
+        actionWithOurElements.enterText(fieldBudget, text);
     }
 
     public void selectCurrenciesDropDown(String valueOfType) {
@@ -276,16 +262,16 @@ public class PlanPage extends ParentPage {
     }
 
     public void inputPKeyPassword(String text) {
-        actionWithOurElements.enterText(PKeyPassword, text);
+        actionWithOurElements.enterText(pKeyPassword, text);
     }
 
     public void clickPKeyReadButton() {
-        actionWithOurElements.clickOnElement(PKeyReadButton);
+        actionWithOurElements.clickOnElement(pKeyReadButton);
     }
 
     public void clickSignDataButton(){
         utils.waitABit(5);
-        actionWithOurElements.clickOnElement(SignDataButton);
+        actionWithOurElements.clickOnElement(signDataButton);
     }
 
     public void elementDisplayedIDTender() throws Exception {

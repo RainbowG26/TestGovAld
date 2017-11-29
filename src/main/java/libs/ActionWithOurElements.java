@@ -198,7 +198,10 @@ public class ActionWithOurElements { //В этот класс мы будем в
             LocalDateTime currentDate = LocalDateTime.now();
             //запуск с консоли - SetDateTimePickerValue('planStart','2017-11-14 17:52:07')
             utils.setDataPicker("planStart", (currentDate.plusMinutes(minute)).format(dateFormat));
-            //setDataPicker("period_enquiry_end", (currentDate.plusMinutes(15)).format(dateFormat));
+            utils.setDataPicker("period_enquiry_start", (currentDate.plusMinutes(5)).format(dateFormat));
+            utils.setDataPicker("period_enquiry_end", (currentDate.plusMinutes(10)).format(dateFormat));
+            utils.setDataPicker("period_tender_start", (currentDate.plusMinutes(10)).format(dateFormat));
+            utils.setDataPicker("period_tender_end", (currentDate.plusMinutes(15)).format(dateFormat));
             logger.info("Data picker work");
         } catch (Exception e) {
             logger.error("Data picker does not work");
