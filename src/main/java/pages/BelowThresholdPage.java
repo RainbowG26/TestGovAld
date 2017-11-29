@@ -53,12 +53,12 @@ public class BelowThresholdPage extends ParentPage {
         actionWithOurElements.setCheckboxState(switchButtonMultiLot, "unclicked");
     }
 
-    public void inputBudget(String text) {
-        actionWithOurElements.enterText(fieldBudget, text);
+    public void inputBudget(String price) {
+        actionWithOurElements.enterText(fieldBudget, price);
     }
 
-    public void inputMinStepPricePercentage(String text) {
-        actionWithOurElements.enterText(minStepPricePercentage, text);
+    public void inputMinStepPricePercentage(String price) {
+        actionWithOurElements.enterText(minStepPricePercentage, price);
     }
 
     public void periodEnquiryStartCalendar(int minute) {
