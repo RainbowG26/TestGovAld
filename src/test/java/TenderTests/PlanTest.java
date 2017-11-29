@@ -8,11 +8,11 @@ public class PlanTest extends ParentTest {
     @Test
     public void createPlan() throws Exception {
         loginPage.loginUser("test.gov.user@yopmail.com", "123456");
-        planPage.clickButtonCreatePurchase();
-        planPage.clickPlanPurchase();
-        planPage.inputPlanTitle("Тест Створення Плана закупівель");
-        planPage.inputPlanDescription("Тест Створення Плана закупівель");
-        planPage.inputPlanBudget("1000");
+        homePage.clickButtonCreatePurchase();
+        homePage.clickPlanPurchase();
+        planPage.inputTitle("Тест Створення Плана закупівель");
+        planPage.inputDescription("Тест Створення Плана закупівель");
+        planPage.inputBudget("1000");
         planPage.selectCurrenciesDropDown("string:UAH");
         planPage.planStartCalendar(2);
         planPage.selectYear("number:2017");
