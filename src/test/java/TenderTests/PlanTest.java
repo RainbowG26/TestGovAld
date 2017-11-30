@@ -18,7 +18,7 @@ public class PlanTest extends ParentTest {
         planPage.selectYear("number:2017");
         planPage.selectPurchaseType("3");
         planPage.clickClassifier212015();
-        planPage.searchClassifier212015("30000000-9");
+        planPage.searchClassifier212015("30231300-0");
         planPage.elementDisplayedClassifierId();
         planPage.addClassifier();
         planPage.clickOtherClassifier();
@@ -36,7 +36,7 @@ public class PlanTest extends ParentTest {
         planPage.procurementSubjectQuantity00("100");
         planPage.selectUnit00("H87");
         planPage.clickClassifier212015_();
-        planPage.searchClassifier212015("30000000-9");
+        planPage.searchClassifier212015("30231300-0");
         planPage.elementDisplayedClassifierId();
         planPage.addClassifier();
         planPage.btnOtherClassifier();

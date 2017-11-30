@@ -20,6 +20,7 @@ public class HomePage extends ParentPage{
     private WebElement belowThresholdPurchase;
 
     public void clickButtonCreatePurchase() {
+        utils.waitABit(5);
         actionWithOurElements.clickOnElement(buttonCreatePurchase);
     }
 

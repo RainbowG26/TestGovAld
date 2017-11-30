@@ -63,7 +63,7 @@ public class Utils {
     public void scrollPage() {
         try {
             JavascriptExecutor js = (JavascriptExecutor) webDriver;
-            js.executeScript("window.scrollBy(0,250)", "");
+            js.executeScript("window.scrollBy(0,300)", "");
         } catch (JavascriptException e) {
             e.printStackTrace();
         }

@@ -163,7 +163,7 @@ public class PlanPage extends ParentPage {
 
     public void clickOtherClassifier() {
         utils.waitABit(5); //Метод waitABit Static, он напрямую вызывается без приложения к конкретному объекту этого класса
-        actionWithOurElements.clickOnElement(otherClassifier);
+        actionWithOurElements.clickOnElementByLocator(otherClassifier);
     }
 
     public void searchOtherClassifier(String number) {
@@ -180,7 +180,7 @@ public class PlanPage extends ParentPage {
 
     public void clickKekvClassifier() {
         utils.waitABit(5);
-        actionWithOurElements.clickOnElement(kekvClassifier);
+        actionWithOurElements.clickOnElementByLocator(kekvClassifier);
     }
 
     public void searchKekvClassifier(String number) {
@@ -203,7 +203,7 @@ public class PlanPage extends ParentPage {
 
     public void addProcurementSubject0() {
         utils.waitABit(5);
-        actionWithOurElements.clickOnElement(addProcurementSubject0);
+        actionWithOurElements.clickOnElementByLocator(addProcurementSubject0);
     }
 
     public void procurementSubjectDescription00(String text) {
@@ -229,7 +229,7 @@ public class PlanPage extends ParentPage {
 
     public void clickUpdate00() throws Exception {
         utils.waitABit(5);
-        actionWithOurElements.clickOnElement(update00);
+        actionWithOurElements.clickOnElementByLocator(update00);
     }
 
     public void btnMovePlanView() {
@@ -238,12 +238,12 @@ public class PlanPage extends ParentPage {
     }
 
     public void publishBtn() {
-        utils.waitABit(5);
-        actionWithOurElements.clickOnElement(publishBtn);
+        utils.waitABit(10);
+        actionWithOurElements.clickOnElementByLocator(publishBtn);
     }
 
     public void imposeECP() {
-        actionWithOurElements.clickOnElement(imposeECP);
+        actionWithOurElements.clickOnElementByLocator(imposeECP);
     }
 
     public void selectCSK(String nameOfType) {

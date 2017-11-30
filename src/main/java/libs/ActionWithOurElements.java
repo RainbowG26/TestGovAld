@@ -202,10 +202,12 @@ public class ActionWithOurElements { //В этот класс мы будем в
             utils.setDataPicker("period_enquiry_end", (currentDate.plusMinutes(10)).format(dateFormat));
             utils.setDataPicker("period_tender_start", (currentDate.plusMinutes(10)).format(dateFormat));
             utils.setDataPicker("period_tender_end", (currentDate.plusMinutes(15)).format(dateFormat));
-            logger.info("Data picker work");
+            utils.setDataPicker("delivery_start_00", (currentDate.plusMinutes(40)).format(dateFormat));
+            utils.setDataPicker("delivery_end_00", (currentDate.plusDays(30)).format(dateFormat));
+            logger.info("Date and time entered in the field");
         } catch (Exception e) {
-            logger.error("Data picker does not work");
-            Assert.fail("Data picker does not work");
+            logger.error("Date and time are not entered in the field");
+            Assert.fail("Date and time are not entered in the field");
         }
     }
 
