@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.IOException;
+
 public class BelowThresholdPage extends ParentPage {
 
 
@@ -32,7 +34,7 @@ public class BelowThresholdPage extends ParentPage {
     @FindBy(id = "min_step_percentage")
     private WebElement minStepPricePercentage;
 
-    @FindBy(id = "next_step")
+    @FindBy(xpath = ".//button[@id = 'next_step' and @class = 'btn btn-success']")
     private WebElement nextStepButton;
 
     @FindBy(xpath = ".//button[@class='btn btn-primary ng-scope']")
@@ -116,6 +118,42 @@ public class BelowThresholdPage extends ParentPage {
     @FindBy(xpath = ".//input[@ng-model = 'featureEnum.title']")
     private WebElement featureEnumTitle_0_0_0;
 
+    @FindBy(xpath = ".//input[@ng-model = 'featureEnum.description']")
+    private WebElement featureEnumDescription_0_0_0;
+
+    @FindBy(xpath = ".//button[@ng-click= 'addFeatureEnum(lotPurchasePlan, features)']")
+    private WebElement addFeatureEnum_0_0;
+
+    @FindBy(xpath = ".//input[@ng-model='featureEnum.value' and @class = 'form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-pattern']")
+    private WebElement featureEnumValue_0_0_1;
+
+    @FindBy(xpath = ".//input[@ng-model = 'featureEnum.title' and @class='form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required']")
+    private WebElement featureEnumTitle_0_0_1;
+
+    @FindBy(xpath = ".//input[@ng-model = 'featureEnum.description' and @class='form-control ng-pristine ng-untouched ng-valid ng-empty']")
+    private WebElement featureEnumDescription_0_0_1;
+
+    @FindBy(xpath = ".//button[@ng-click = 'deleteFeatureEnum(lotPurchasePlan, features, featureEnum); validateWeight(lotPurchasePlan, features)']")
+    private WebElement deleteFeatureEnum;
+
+    @FindBy(xpath = ".//button[@id = 'updateFeature_0_0' and @class = 'btn btn-success']")
+    private WebElement updateFeature_0_0;
+
+    @FindBy(id = "documents-tab")
+    private WebElement documentsTab;
+
+    @FindBy(id = "upload_document")
+    private WebElement uploadDocument;
+
+    @FindBy(id = "categorySelect")
+    private WebElement categorySelect;
+
+    @FindBy(id = "documentOfSelect")
+    private WebElement documentOfSelect;
+
+    @FindBy(xpath = ".//input[@id = 'fileInput' and @type = 'file']")
+    private WebElement buttonAttachDocument;
+
     public void inputTitle(String text) {
         actionWithOurElements.enterText(titleOfTenderForEdit, text);
     }
@@ -162,9 +200,9 @@ public class BelowThresholdPage extends ParentPage {
     }
 
     public void clickNextStepButton() {
-        utils.scrollPage();
+        utils.scrollPageDown();
         utils.waitABit(5);
-        actionWithOurElements.clickOnElement(nextStepButton);
+        actionWithOurElements.clickOnElementByLocator(nextStepButton);
     }
 
     public void addProcurementSubject0() {
@@ -239,24 +277,24 @@ public class BelowThresholdPage extends ParentPage {
         actionWithOurElements.enterText(zip_code_00, zipCode);
     }
 
-    public void inputLocality00(String location){
+    public void inputLocality00(String location) {
         actionWithOurElements.enterText(locality_00, location);
     }
 
-    public void inputStreet00(String street){
+    public void inputStreet00(String street) {
         actionWithOurElements.enterText(street_00, street);
     }
 
-    public void inputCoordinatesLatitude00(String latitude){
+    public void inputCoordinatesLatitude00(String latitude) {
         actionWithOurElements.enterText(latutide_00, latitude);
     }
 
-    public void inputCoordinatesLongitude00(String longitude){
-        actionWithOurElements.enterText(longitude_00 ,longitude);
+    public void inputCoordinatesLongitude00(String longitude) {
+        actionWithOurElements.enterText(longitude_00, longitude);
     }
 
     public void clickUpdate00() throws Exception {
-        utils.scrollPage();
+        utils.scrollPageDown();
         utils.waitABit(5);
         actionWithOurElements.clickOnElementByLocator(update_00);
     }
@@ -267,27 +305,75 @@ public class BelowThresholdPage extends ParentPage {
     }
 
 
-    public void inputFeatureTitle00(String text){
+    public void inputFeatureTitle00(String text) {
         actionWithOurElements.enterText(featureTitle_0_0, text);
     }
 
-    public void inputFeatureDescription00(String text){
+    public void inputFeatureDescription00(String text) {
         actionWithOurElements.enterText(featureDescription_0_0, text);
     }
 
-    public void clickPosition(){
+    public void clickPosition() {
         actionWithOurElements.clickOnElementByLocator(position);
     }
 
-    public void selectFeatureItem00(String valueOfType){
+    public void selectFeatureItem00(String valueOfType) {
         actionWithOurElements.selectTextInDropDownByText(featureItem_0_0, valueOfType);
     }
 
-    public void clickClearButton(){
+    public void clickClearButton() {
+        utils.scrollPageDown();
         actionWithOurElements.clickOnElementByLocator(clearButton);
     }
 
-    public void inputFeatureEnumTitle000(String text){
+    public void inputFeatureEnumTitle000(String text) {
         actionWithOurElements.enterText(featureEnumTitle_0_0_0, text);
+    }
+
+    public void inputFeatureEnumDescription000(String text) {
+        actionWithOurElements.enterText(featureEnumDescription_0_0_0, text);
+    }
+
+    public void clickAddFeatureEnum00() {
+        actionWithOurElements.clickOnElementByLocator(addFeatureEnum_0_0);
+    }
+
+    public void inputFeatureEnumValue001(String number) {
+        actionWithOurElements.enterText(featureEnumValue_0_0_1, number);
+    }
+
+    public void inputFeatureEnumTitle001(String text) {
+        actionWithOurElements.enterText(featureEnumTitle_0_0_1, text);
+    }
+
+    public void inputFeatureEnumDescription001(String text) {
+        actionWithOurElements.enterText(featureEnumDescription_0_0_1, text);
+    }
+
+    public void clickUpdateFeature00() {
+        actionWithOurElements.clickOnElementByLocator(updateFeature_0_0);
+    }
+
+    public void clickDocumentsTab() {
+        utils.scrollPageUp();
+        utils.waitABit(5);
+        actionWithOurElements.clickOnElement(documentsTab);
+    }
+
+    public void clickUploadDocument() {
+        utils.waitABit(5);
+        actionWithOurElements.clickOnElement(uploadDocument);
+    }
+
+    public void selectCategoryDocument(String valueOfType) {
+        actionWithOurElements.selectValueInDropDownByValue(categorySelect, valueOfType);
+    }
+
+    public void selectDocumentFileTo(String valueOfType) {
+        actionWithOurElements.selectValueInDropDownByValue(documentOfSelect, valueOfType);
+    }
+
+    public void attachDocumentToTender(String key) throws IOException {
+        actionWithOurElements.upLoadFile(buttonAttachDocument, key);
     }
 }

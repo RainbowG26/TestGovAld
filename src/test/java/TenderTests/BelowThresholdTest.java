@@ -3,7 +3,7 @@ package TenderTests;
 import org.junit.Test;
 import parentTest.ParentTest;
 
-public class BelowThresholdTest extends ParentTest{
+public class BelowThresholdTest extends ParentTest {
 
     @Test
     public void createBelowThreshold() throws Exception {
@@ -54,5 +54,17 @@ public class BelowThresholdTest extends ParentTest{
         belowThresholdPage.selectFeatureItem00("Молоко");
         belowThresholdPage.clickClearButton();
         belowThresholdPage.inputFeatureEnumTitle000("Початок");
+        belowThresholdPage.inputFeatureEnumDescription000("Початок коментару");
+        belowThresholdPage.clickAddFeatureEnum00();
+        belowThresholdPage.inputFeatureEnumValue001("10");
+        belowThresholdPage.inputFeatureEnumTitle001("Початок");
+        belowThresholdPage.inputFeatureEnumDescription001("Початок коментару");
+        belowThresholdPage.clickUpdateFeature00();
+
+        belowThresholdPage.clickDocumentsTab();
+        belowThresholdPage.clickUploadDocument();
+        belowThresholdPage.selectCategoryDocument("biddingDocuments");
+        belowThresholdPage.selectDocumentFileTo("Tender");
+        belowThresholdPage.attachDocumentToTender("DocTender");
     }
 }

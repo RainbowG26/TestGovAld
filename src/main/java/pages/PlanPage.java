@@ -99,7 +99,7 @@ public class PlanPage extends ParentPage {
     @FindBy(id = "CAsServersSelect")
     private WebElement selectCSK;
 
-    @FindBy(xpath = ".//input[@id = 'ChoosePKCertsInput' and @type = 'file']")
+    @FindBy(xpath = ".//input[@id = 'ChoosePKCertsInput']")
     private WebElement filePathPKCerts;
 
     @FindBy(xpath = ".//input[@id = 'PKeyFileInput' and @type = 'file']")
@@ -196,7 +196,7 @@ public class PlanPage extends ParentPage {
     }
 
     public void saveChangesPlanNextStep() {
-        utils.scrollPage();
+        utils.scrollPageDown();
         utils.waitABit(5);
         actionWithOurElements.clickOnElement(saveChangesPlanNextStep);
     }
@@ -253,12 +253,12 @@ public class PlanPage extends ParentPage {
 
 
     public void downloadFileUserSert(String key) throws IOException {
-        actionWithOurElements.downloadFile(filePathPKCerts, key);
+        actionWithOurElements.upLoadFile(filePathPKCerts, key);
     }
 
 
     public void downloadFilePKey(String key) throws IOException {
-        actionWithOurElements.downloadFile(filePathPKey, key);
+        actionWithOurElements.upLoadFile(filePathPKey, key);
     }
 
     public void inputPKeyPassword(String text) {

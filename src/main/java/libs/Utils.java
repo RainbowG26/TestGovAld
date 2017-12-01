@@ -2,6 +2,7 @@ package libs;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 
 import java.io.File;
@@ -60,11 +61,26 @@ public class Utils {
         }
     }
 
-    public void scrollPage() {
+    public void scrollPageDown() {
         try {
             JavascriptExecutor js = (JavascriptExecutor) webDriver;
-            js.executeScript("window.scrollBy(0,300)", "");
+            js.executeScript("window.scrollBy(0,350)", "");
+            logger.info("Scroll Page Down");
         } catch (JavascriptException e) {
+            logger.error("Can not work with Scroll Page Down");
+            Assert.fail("Can not work with Scroll Page Down");
+            e.printStackTrace();
+        }
+    }
+
+    public void scrollPageUp() {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) webDriver;
+            js.executeScript("window.scrollBy(0,-300)", "");
+            logger.info("Scroll Page Up");
+        } catch (JavascriptException e) {
+            logger.error("Can not work with Scroll Page Up");
+            Assert.fail("Can not work with Scroll Page Up");
             e.printStackTrace();
         }
     }

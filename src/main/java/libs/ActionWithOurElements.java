@@ -217,7 +217,7 @@ public class ActionWithOurElements { //В этот класс мы будем в
 //
 //    }
 
-    public void downloadFile(WebElement element,String key) throws IOException {
+    public void upLoadFile(WebElement element,String key) throws IOException {
         try {
             File filePath = new File(ConfigData.getFilePathValue(key));
             element.sendKeys(filePath.getAbsolutePath());
