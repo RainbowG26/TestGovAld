@@ -1,9 +1,14 @@
 package TenderTests;
 
+import libs.ActionWithOurElements;
 import org.junit.Test;
+import pagesBuyer.PlanPage;
 import parentTest.ParentTest;
 
 public class PlanTest extends ParentTest {
+
+    PlanPage planPage = new PlanPage(webDriver);
+    public ActionWithOurElements actionWithOurElements;
 
     @Test
     public void createPlan() throws Exception {
@@ -11,6 +16,7 @@ public class PlanTest extends ParentTest {
         homePage.clickButtonCreatePurchase();
         homePage.clickPlanPurchase();
         planPage.inputTitle("Тест Створення Плана закупівель");
+        actionWithOurElements.enterText(planPage.fieldTitle, "Тест Створення Плана закупівель");
         planPage.inputDescription("Тест Створення Плана закупівель");
         planPage.inputBudget("1000");
         planPage.selectCurrenciesDropDown("string:UAH");

@@ -13,7 +13,7 @@ public class PlanPage extends ParentPage {
     }
 
     @FindBy(id = "planTitle")
-    private WebElement fieldTitle;
+    public WebElement fieldTitle;
 
     @FindBy(id = "planDescription")
     private WebElement fieldDescription;

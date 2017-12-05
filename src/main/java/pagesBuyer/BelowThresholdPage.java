@@ -1,5 +1,6 @@
 package pagesBuyer;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -392,25 +393,28 @@ public class BelowThresholdPage extends ParentPage {
         actionWithOurElements.upLoadFile(buttonAttachDocument, key);
     }
 
-    public void clickSaveFile(){
+    public void clickSaveFile() {
         actionWithOurElements.clickOnElement(saveFile);
     }
 
-    public void movePurchaseView(){
+    public void movePurchaseView() {
         utils.waitABit(5);
         actionWithOurElements.clickOnElement(movePurchaseView);
     }
 
-    public void publishPurchase(){
+    public void publishPurchase() {
         utils.waitABit(10);
         actionWithOurElements.clickOnElement(publishPurchase);
     }
 
-    public void purchaseECP(){
+    public void purchaseECP() {
+        utils.waitABit(5);
         actionWithOurElements.clickOnElementByLocator(purchaseECP);
     }
 
-    public void findIdTender(){
-        String nameId = actionWithOurElements.getText(purchaseProzorroId);
+    public void findIdTender() {
+        //String nameId = actionWithOurElements.getText(purchaseProzorroId);
+        String megaID = webDriver.findElement(By.xpath(".//*[@id='purchaseProzorroId']")).getText();
+        logger.info("ID = " + megaID);
     }
 }

@@ -8,4 +8,6 @@ public class SubmissionOfProposalsPage extends ParentPage{
     public SubmissionOfProposalsPage(WebDriver driver) {
         super(driver);
     }
+
+
 }
