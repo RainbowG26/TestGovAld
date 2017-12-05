@@ -1,6 +1,5 @@
-package pages;
+package pagesBuyer;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

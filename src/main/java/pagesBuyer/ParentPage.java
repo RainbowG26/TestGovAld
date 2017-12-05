@@ -1,4 +1,4 @@
-package pages;
+package pagesBuyer;
 
 
 import libs.ActionWithOurElements;

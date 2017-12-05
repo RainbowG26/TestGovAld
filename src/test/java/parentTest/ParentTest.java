@@ -10,10 +10,11 @@ import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import pages.BelowThresholdPage;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.PlanPage;
+import pagesBuyer.BelowThresholdPage;
+import pagesBuyer.HomePage;
+import pagesBuyer.LoginPage;
+import pagesBuyer.PlanPage;
+import pagesProvider.SubmissionOfProposalsPage;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -29,6 +30,7 @@ public class ParentTest {
     public PlanPage planPage;
     public HomePage homePage;
     public BelowThresholdPage belowThresholdPage;
+    public SubmissionOfProposalsPage submissionOfProposalsPage;
 
     //Конструктор передает во внутрь класса, настроить обьект. передаем обьект с одного класса в другом
     //работай с обьектом этого класса
@@ -56,6 +58,7 @@ public class ParentTest {
         planPage = new PlanPage(webDriver);
         homePage = new HomePage(webDriver);
         belowThresholdPage = new BelowThresholdPage(webDriver);
+        submissionOfProposalsPage = new SubmissionOfProposalsPage(webDriver);
     }
 
     @After

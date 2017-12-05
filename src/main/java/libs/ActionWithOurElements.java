@@ -48,6 +48,25 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
+    public String getText(WebElement element) {
+
+        String elementText = null;
+
+        try {
+            if (isElementPresent(element) == true) {
+                elementText = element.getText().trim();
+                logger.info("Gettin text from web element");
+            } else {
+                logger.error("Can't get text from element " + element);
+                Assert.fail("Can't get text from element " + element);
+            }
+        } catch (Exception e) {
+            logger.error("Can't get text from element " + element);
+            Assert.fail("Can't get text from element " + element);
+        }
+        return elementText;
+    }
+
     /**
      * Method Click element Button
      *
