@@ -12,7 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 public class ParentPage {
     WebDriver webDriver;
     Logger logger;
-    ActionWithOurElements actionWithOurElements;
+    public ActionWithOurElements actionWithOurElements;
     Utils utils;
 
     public ParentPage(WebDriver driver) { //Создали конструктор для того чтобы передать webDriver

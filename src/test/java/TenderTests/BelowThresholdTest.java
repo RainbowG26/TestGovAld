@@ -77,5 +77,6 @@ public class BelowThresholdTest extends ParentTest {
         belowThresholdPage.publishPurchase();
 
         planPage.elementDisplayedIDTender();
+        belowThresholdPage.findIdTender();
     }
 }

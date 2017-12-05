@@ -166,6 +166,9 @@ public class BelowThresholdPage extends ParentPage {
     @FindBy(xpath = ".//button[@ng-if = 'purchase.purchaseControl.ecpBtn']")
     private WebElement purchaseECP;
 
+    @FindBy(xpath = ".//*[@id='purchaseProzorroId']")
+    private WebElement purchaseProzorroId;
+
     public void inputTitle(String text) {
         actionWithOurElements.enterText(titleOfTenderForEdit, text);
     }
@@ -405,5 +408,9 @@ public class BelowThresholdPage extends ParentPage {
 
     public void purchaseECP(){
         actionWithOurElements.clickOnElementByLocator(purchaseECP);
+    }
+
+    public void findIdTender(){
+        String nameId = actionWithOurElements.getText(purchaseProzorroId);
     }
 }
