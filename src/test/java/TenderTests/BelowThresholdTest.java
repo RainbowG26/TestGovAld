@@ -66,5 +66,16 @@ public class BelowThresholdTest extends ParentTest {
         belowThresholdPage.selectCategoryDocument("biddingDocuments");
         belowThresholdPage.selectDocumentFileTo("Tender");
         belowThresholdPage.attachDocumentToTender("DocTender");
+        belowThresholdPage.clickSaveFile();
+        belowThresholdPage.movePurchaseView();
+
+        belowThresholdPage.publishPurchase();
+
+        belowThresholdPage.purchaseECP();
+        planPage.workWithImposeECP("Локальні сертифікати", "UserSert", "Key6", "qwerty");
+
+        belowThresholdPage.publishPurchase();
+
+        planPage.elementDisplayedIDTender();
     }
 }

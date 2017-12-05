@@ -154,6 +154,18 @@ public class BelowThresholdPage extends ParentPage {
     @FindBy(xpath = ".//input[@id = 'fileInput' and @type = 'file']")
     private WebElement buttonAttachDocument;
 
+    @FindBy(id = "save_file")
+    private WebElement saveFile;
+
+    @FindBy(id = "movePurchaseView")
+    private WebElement movePurchaseView;
+
+    @FindBy(id = "publishPurchase")
+    private WebElement publishPurchase;
+
+    @FindBy(xpath = ".//button[@ng-if = 'purchase.purchaseControl.ecpBtn']")
+    private WebElement purchaseECP;
+
     public void inputTitle(String text) {
         actionWithOurElements.enterText(titleOfTenderForEdit, text);
     }
@@ -375,5 +387,23 @@ public class BelowThresholdPage extends ParentPage {
 
     public void attachDocumentToTender(String key) throws IOException {
         actionWithOurElements.upLoadFile(buttonAttachDocument, key);
+    }
+
+    public void clickSaveFile(){
+        actionWithOurElements.clickOnElement(saveFile);
+    }
+
+    public void movePurchaseView(){
+        utils.waitABit(5);
+        actionWithOurElements.clickOnElement(movePurchaseView);
+    }
+
+    public void publishPurchase(){
+        utils.waitABit(10);
+        actionWithOurElements.clickOnElement(publishPurchase);
+    }
+
+    public void purchaseECP(){
+        actionWithOurElements.clickOnElementByLocator(purchaseECP);
     }
 }

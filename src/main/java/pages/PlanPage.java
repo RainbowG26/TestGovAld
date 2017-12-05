@@ -1,5 +1,6 @@
 package pages;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -232,7 +233,7 @@ public class PlanPage extends ParentPage {
         actionWithOurElements.clickOnElementByLocator(update00);
     }
 
-    public void btnMovePlanView() {
+    public void movePlanView() {
         utils.waitABit(5);
         actionWithOurElements.clickOnElement(movePlanView);
     }
@@ -277,5 +278,15 @@ public class PlanPage extends ParentPage {
     public void elementDisplayedIDTender() throws Exception {
         utils.waitABit(5);
         actionWithOurElements.isElementPresent1(displayedIDTender);
+    }
+
+    //Method work with impose ECP
+    public void workWithImposeECP(String nameOfType, String fileUserSert, String filePKey, String password) throws IOException {
+        selectCSK(nameOfType);
+        downloadFileUserSert(fileUserSert);
+        downloadFilePKey(filePKey);
+        inputPKeyPassword(password);
+        clickPKeyReadButton();
+        clickSignDataButton();
     }
 }

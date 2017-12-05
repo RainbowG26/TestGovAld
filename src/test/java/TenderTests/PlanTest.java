@@ -44,7 +44,7 @@ public class PlanTest extends ParentTest {
         planPage.elementDisplayedOtherClassifierId();
         planPage.addClassifier();
         planPage.clickUpdate00();
-        planPage.btnMovePlanView();
+        planPage.movePlanView();
 
         planPage.publishBtn();
 
