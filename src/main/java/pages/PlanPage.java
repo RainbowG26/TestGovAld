@@ -124,172 +124,172 @@ public class PlanPage extends ParentPage {
     private WebElement displayedIDTender;
 
     public void clickButtonCreatePurchase() {
-        actionWithOurElements.clickOnElement(buttonCreatePurchase);
+        actionWithElements.clickOnElement(buttonCreatePurchase);
     }
 
     public void clickPlanPurchase() {
-        actionWithOurElements.clickOnElementByLocator(planPurchase);
+        actionWithElements.clickOnElementByLocator(planPurchase);
     }
 
     public void inputPlanTitle(String text) {
-        actionWithOurElements.enterText(planTitle, text);
+        actionWithElements.enterText(planTitle, text);
     }
 
     public void inputPlanDescription(String text) {
-        actionWithOurElements.enterText(planDescription, text);
+        actionWithElements.enterText(planDescription, text);
     }
 
     public void inputPlanBudget(String text) {
-        actionWithOurElements.enterText(planBudget, text);
+        actionWithElements.enterText(planBudget, text);
     }
 
     public void selectCurrenciesDropDown(String valueOfType) {
-        actionWithOurElements.selectValueInDropDownByValue(selectCurrencies, valueOfType);
+        actionWithElements.selectValueInDropDownByValue(selectCurrencies, valueOfType);
     }
 
     public void planStartCalendar(int minute) {
-        actionWithOurElements.inputCalendarDataTime(minute);
+        actionWithElements.inputCalendarDataTime(minute);
     }
 
     public void selectYear(String valueOfType) {
-        actionWithOurElements.selectValueInDropDownByValue(yearSelect, valueOfType);
+        actionWithElements.selectValueInDropDownByValue(yearSelect, valueOfType);
     }
 
     public void selectPurchaseType(String valueOfType) {
-        actionWithOurElements.selectValueInDropDownByValue(purchaseType, valueOfType);
+        actionWithElements.selectValueInDropDownByValue(purchaseType, valueOfType);
     }
 
     public void clickClassifier212015() {
-        actionWithOurElements.clickOnElement(clsClick);
+        actionWithElements.clickOnElement(clsClick);
     }
 
     public void searchClassifier212015(String number) {
-        actionWithOurElements.enterText(searchClassifierText, number);
+        actionWithElements.enterText(searchClassifierText, number);
     }
 
     public void elementDisplayedClassifierId() throws Exception {
-        actionWithOurElements.isElementPresent1(visibleCheckbox);
+        actionWithElements.isElementPresent1(visibleCheckbox);
     }
 
     public void addClassifier() {
-        actionWithOurElements.clickOnElement(addClassifier);
+        actionWithElements.clickOnElement(addClassifier);
     }
 
     public void clickOtherClassifier() {
         utils.waitABit(5); //Метод waitABit Static, он напрямую вызывается без приложения к конкретному объекту этого класса
-        actionWithOurElements.clickOnElement(otherClassifier);
+        actionWithElements.clickOnElement(otherClassifier);
     }
 
     public void searchOtherClassifier(String number) {
-        actionWithOurElements.enterText(searchClassifierText, number);
+        actionWithElements.enterText(searchClassifierText, number);
     }
 
     public void elementDisplayedOtherClassifierId() throws Exception {
-        actionWithOurElements.isElementPresent1(visibleCheckbox);
+        actionWithElements.isElementPresent1(visibleCheckbox);
     }
 
     public void addOtherClassifier() {
-        actionWithOurElements.clickOnElement(addClassifier);
+        actionWithElements.clickOnElement(addClassifier);
     }
 
     public void clickKekvClassifier() {
         utils.waitABit(5);
-        actionWithOurElements.clickOnElement(kekvClassifier);
+        actionWithElements.clickOnElement(kekvClassifier);
     }
 
     public void searchKekvClassifier(String number) {
-        actionWithOurElements.enterText(searchClassifierText, number);
+        actionWithElements.enterText(searchClassifierText, number);
     }
 
     public void elementDisplayedKekvClassifier() throws Exception {
-        actionWithOurElements.isElementPresent1(visibleCheckbox);
+        actionWithElements.isElementPresent1(visibleCheckbox);
     }
 
     public void addKekvClassifier() {
-        actionWithOurElements.clickOnElement(addClassifier);
+        actionWithElements.clickOnElement(addClassifier);
     }
 
     public void saveChangesPlanNextStep() {
         utils.scrollPage();
         utils.waitABit(5);
-        actionWithOurElements.clickOnElement(saveChangesPlanNextStep);
+        actionWithElements.clickOnElement(saveChangesPlanNextStep);
     }
 
     public void addProcurementSubject0() {
         utils.waitABit(5);
-        actionWithOurElements.clickOnElement(addProcurementSubject0);
+        actionWithElements.clickOnElement(addProcurementSubject0);
     }
 
     public void procurementSubjectDescription00(String text) {
-        actionWithOurElements.enterText(procurementSubjectDescription00, text);
+        actionWithElements.enterText(procurementSubjectDescription00, text);
     }
 
     public void procurementSubjectQuantity00(String number) {
-        actionWithOurElements.enterText(procurementSubjectQuantity00, number);
+        actionWithElements.enterText(procurementSubjectQuantity00, number);
     }
 
     public void selectUnit00(String valueOfType) {
-        actionWithOurElements.selectValueInDropDownByValue(selectUnit00, valueOfType);
+        actionWithElements.selectValueInDropDownByValue(selectUnit00, valueOfType);
     }
 
     public void clickClassifier212015_() {
-        actionWithOurElements.clickOnElement(cls_click_);
+        actionWithElements.clickOnElement(cls_click_);
     }
 
     public void btnOtherClassifier() {
         utils.waitABit(5);
-        actionWithOurElements.clickOnElement(btnOtherClassifier);
+        actionWithElements.clickOnElement(btnOtherClassifier);
     }
 
     public void clickUpdate00() throws Exception {
         utils.waitABit(5);
-        actionWithOurElements.clickOnElement(update00);
+        actionWithElements.clickOnElement(update00);
     }
 
     public void btnMovePlanView() {
         utils.waitABit(5);
-        actionWithOurElements.clickOnElement(movePlanView);
+        actionWithElements.clickOnElement(movePlanView);
     }
 
     public void publishBtn() {
         utils.waitABit(5);
-        actionWithOurElements.clickOnElement(publishBtn);
+        actionWithElements.clickOnElement(publishBtn);
     }
 
     public void imposeECP() {
-        actionWithOurElements.clickOnElement(imposeECP);
+        actionWithElements.clickOnElement(imposeECP);
     }
 
     public void selectCSK(String nameOfType) {
         utils.waitABit(10);
-        actionWithOurElements.selectTextInDropDownByText(selectCSK, nameOfType);
+        actionWithElements.selectTextInDropDownByText(selectCSK, nameOfType);
     }
 
 
     public void downloadFileUserSert(String key) throws IOException {
-        actionWithOurElements.downloadFile(filePathPKCerts, key);
+        actionWithElements.downloadFile(filePathPKCerts, key);
     }
 
 
     public void downloadFilePKey(String key) throws IOException {
-        actionWithOurElements.downloadFile(filePathPKey, key);
+        actionWithElements.downloadFile(filePathPKey, key);
     }
 
     public void inputPKeyPassword(String text) {
-        actionWithOurElements.enterText(PKeyPassword, text);
+        actionWithElements.enterText(PKeyPassword, text);
     }
 
     public void clickPKeyReadButton() {
-        actionWithOurElements.clickOnElement(PKeyReadButton);
+        actionWithElements.clickOnElement(PKeyReadButton);
     }
 
     public void clickSignDataButton(){
         utils.waitABit(5);
-        actionWithOurElements.clickOnElement(SignDataButton);
+        actionWithElements.clickOnElement(SignDataButton);
     }
 
     public void elementDisplayedIDTender() throws Exception {
         utils.waitABit(5);
-        actionWithOurElements.isElementPresent1(displayedIDTender);
+        actionWithElements.isElementPresent1(displayedIDTender);
     }
 }
