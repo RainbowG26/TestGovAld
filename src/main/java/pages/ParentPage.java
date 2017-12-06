@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 public class ParentPage {
     WebDriver webDriver;
     Logger logger;
-    public ActionWithElements actionWithElements;
+    ActionWithElements actionWithElements;
 
     public ParentPage(WebDriver driver) { //Создали конструктор для того чтобы передать webDriver
         this.webDriver = driver; //webDriver перетащит webDriver который перейдет из вне

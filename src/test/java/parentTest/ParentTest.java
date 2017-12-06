@@ -9,7 +9,6 @@ import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import pages.BelowThresholdPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.PlanPage;
@@ -17,14 +16,15 @@ import pages.PlanPage;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+
 public class ParentTest {
     public WebDriver webDriver; //Обьявили модификатором public чтобы был доступен в обоих package(инкапсуляция)
     private Logger logger = Logger.getLogger(getClass());
+
     private String pathToScreenShot; //Переменная для изменяемого пути к файлу
     public LoginPage loginPage; //обьявили переменную loginPage
-    public PlanPage planPage;
     public HomePage homePage;
-    public BelowThresholdPage belowThresholdPage;
+    public PlanPage planPage;
     public ActionWithElements actionWithElements;
 
     //Конструктор передает во внутрь класса, настроить обьект. передаем обьект с одного класса в другом
@@ -50,9 +50,8 @@ public class ParentTest {
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         loginPage = new LoginPage(webDriver); //Передали в loginPage webDriver с которым мы будем пользоваться
-        planPage = new PlanPage(webDriver);
         homePage = new HomePage(webDriver);
-        belowThresholdPage = new BelowThresholdPage(webDriver);
+        planPage = new PlanPage(webDriver);
         actionWithElements = new ActionWithElements(webDriver);
     }
 

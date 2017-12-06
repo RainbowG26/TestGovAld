@@ -119,6 +119,7 @@ public class PlanPage extends ParentPage {
 
     //Method work with impose ECP
     public void workWithImposeECP(String nameOfType, String fileUserSert, String filePKey, String password) throws IOException {
+        actionWithElements.waitABit(5);
         actionWithElements.selectTextInDropDownByText(selectCSK, nameOfType);
         actionWithElements.upLoadFile(filePathPKCerts, fileUserSert);
         actionWithElements.upLoadFile(filePathPKey, filePKey);
@@ -126,4 +127,5 @@ public class PlanPage extends ParentPage {
         actionWithElements.clickOnElementByLocator(pKeyReadButton);
         actionWithElements.clickOnElementByLocator(signDataButton);
     }
+
 }
