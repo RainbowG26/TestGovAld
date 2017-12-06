@@ -1,5 +1,6 @@
 package libs;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -12,20 +13,68 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
 
-public class ActionWithOurElements { //В этот класс мы будем выносить все елементы страницы
+import static org.hamcrest.CoreMatchers.is;
+
+public class ActionWithElements { //В этот класс мы будем выносить все елементы страницы
 
     WebDriver webDriver;
     Logger logger;
     WebDriverWait webDriverWait15;
-    Utils utils;
 
 
-    public ActionWithOurElements(WebDriver driver) {
+    public ActionWithElements(WebDriver driver) {
         this.webDriver = driver;
         logger = Logger.getLogger(getClass());
         webDriverWait15 = new WebDriverWait(webDriver, 15); //Драйвер жди 15 секунд каждые пол секунды он будет счелкать по кнопке
-        utils = new Utils(webDriver);
+    }
+
+
+    /**
+     * Method opens url
+     *
+     * @param url
+     */
+
+    public void openUrl(String url) { //создаем метод open и в него передаем Тип String с именем url
+        try {
+            webDriver.get(url); //открываем страницу
+            logger.info("Page was opened - " + url);
+        } catch (Exception e) {
+            logger.error("Page can not opened - " + url);
+            //Assert.fail пишет текст в Junit ЛОГ который будет использоваться для отчетов, и помимо этого он тест останавливает
+            //Assert любой из них при негативном тесте завершает работы теста и пишет красным
+            Assert.fail("Page can not opened" + url);
+        }
+    }
+
+    /**
+     * Method check title page
+     *
+     * @param expectedTitle
+     */
+
+    public void checkTitle(String expectedTitle) { //Метод ищет title //Strategy Pattern used and Map
+        try {
+            Assert.assertEquals(expectedTitle, webDriver.getTitle(), "Title not matched");
+        } catch (Exception e) {
+            logger.error("Can not work with title");
+            Assert.fail("Can not work with title");
+        }
+    }
+
+    /**
+     * Check actualResult / expectedResult
+     * @param message
+     * @param actualResult
+     * @param expectedResult
+     */
+
+    //Создаем метод Аксептес кретерии с типами и переменными для сравнение Фактического и Ожидаемого результата
+    public void checkAC(String message, boolean actualResult, boolean expectedResult) {
+        //делает сравнение actualResult с expectedResult заимпортим is - ALT+ENTER выбираем CoreMatchers
+        Assert.assertThat(message, actualResult, is(expectedResult));
     }
 
     /**
@@ -166,17 +215,17 @@ public class ActionWithOurElements { //В этот класс мы будем в
     }
 
     //Метод выбора значения в DropDown по value
-    public void selectValueInDropDownByValue(WebElement dropDown, String text) {
+    public void selectValueInDropDownByValue(WebElement dropDown, String value) {
         try {
             //Библиотека умеет работать с ДропДауном и с него получаем все елементы
             Select optionsFromDropDown = new Select(dropDown);
             // Выбери нам из value
             // select by value - работает быстрей в разы!!
-            optionsFromDropDown.selectByValue(text);
-            logger.info("Was selected is DropDown by value - " + text);
+            optionsFromDropDown.selectByValue(value);
+            logger.info("Was selected is DropDown by value - " + value);
         } catch (Exception e) {
-            logger.error("Can not work with DropDown - " + text);
-            Assert.fail("Can not work with DropDown - " + text);
+            logger.error("Can not work with DropDown - " + value);
+            Assert.fail("Can not work with DropDown - " + value);
         }
     }
 
@@ -211,18 +260,29 @@ public class ActionWithOurElements { //В этот класс мы будем в
         }
     }
 
+    //str formatter java - форматер в строку, js.executeScript java
+
+    public void setDataPicker(String id, String value) {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) webDriver;
+            js.executeScript("SetDateTimePickerValue(\'" + id + "\',\'" + value + "\')");
+        } catch (JavascriptException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void inputCalendarDataTime(int minute) {
         try {
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime currentDate = LocalDateTime.now();
             //запуск с консоли - SetDateTimePickerValue('planStart','2017-11-14 17:52:07')
-            utils.setDataPicker("planStart", (currentDate.plusMinutes(minute)).format(dateFormat));
-            utils.setDataPicker("period_enquiry_start", (currentDate.plusMinutes(5)).format(dateFormat));
-            utils.setDataPicker("period_enquiry_end", (currentDate.plusMinutes(10)).format(dateFormat));
-            utils.setDataPicker("period_tender_start", (currentDate.plusMinutes(10)).format(dateFormat));
-            utils.setDataPicker("period_tender_end", (currentDate.plusMinutes(15)).format(dateFormat));
-            utils.setDataPicker("delivery_start_00", (currentDate.plusMinutes(40)).format(dateFormat));
-            utils.setDataPicker("delivery_end_00", (currentDate.plusDays(30)).format(dateFormat));
+            setDataPicker("planStart", (currentDate.plusMinutes(minute)).format(dateFormat));
+            setDataPicker("period_enquiry_start", (currentDate.plusMinutes(5)).format(dateFormat));
+            setDataPicker("period_enquiry_end", (currentDate.plusMinutes(10)).format(dateFormat));
+            setDataPicker("period_tender_start", (currentDate.plusMinutes(10)).format(dateFormat));
+            setDataPicker("period_tender_end", (currentDate.plusMinutes(15)).format(dateFormat));
+            setDataPicker("delivery_start_00", (currentDate.plusMinutes(40)).format(dateFormat));
+            setDataPicker("delivery_end_00", (currentDate.plusDays(30)).format(dateFormat));
             logger.info("Date and time entered in the field");
         } catch (Exception e) {
             logger.error("Date and time are not entered in the field");
@@ -244,6 +304,61 @@ public class ActionWithOurElements { //В этот класс мы будем в
         } catch (Exception e) {
             logger.error("A problem with an element or a key in the ConfigData class");
             Assert.fail("A problem with an element or a key in the ConfigData class");
+        }
+    }
+
+    /**
+     * Taking screenshot into .//target// + pathToScreenShot
+     *
+     * @param pathToScreenShot
+     * @param driver
+     */
+    public void screenShot(String pathToScreenShot, WebDriver driver) { //Метод который делает скрин
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE); //Снимает скрин
+        try {
+            FileUtils.copyFile(scrFile, new File(pathToScreenShot));
+            logger.info("ScreenShot: " + pathToScreenShot);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Hard wait
+     *
+     * @param second
+     */
+    //Статический член 'libs.Utils.waitABit (int)' обращается через ссылку экземпляра меньше
+    //Метод waitABit Static, он напрямую вызывается без приложения к конкретному объекту этого класса
+    public void waitABit(int second) { //Метод останавливает все процессы в джава
+        try {
+            TimeUnit.SECONDS.sleep(second);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void scrollPageDown() {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) webDriver;
+            js.executeScript("window.scrollBy(0,350)", "");
+            logger.info("Scroll Page Down");
+        } catch (JavascriptException e) {
+            logger.error("Can not work with Scroll Page Down");
+            Assert.fail("Can not work with Scroll Page Down");
+            e.printStackTrace();
+        }
+    }
+
+    public void scrollPageUp() {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) webDriver;
+            js.executeScript("window.scrollBy(0,-300)", "");
+            logger.info("Scroll Page Up");
+        } catch (JavascriptException e) {
+            logger.error("Can not work with Scroll Page Up");
+            Assert.fail("Can not work with Scroll Page Up");
+            e.printStackTrace();
         }
     }
 }
