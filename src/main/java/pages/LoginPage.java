@@ -10,25 +10,22 @@ public class LoginPage extends ParentPage {
         super(driver); //его мы передадим в родительский класс ParentPage
     }
 
-    @FindBy(id = "liLoginNoAuthenticated")
+    @FindBy(xpath = ".//li[@id='liLoginNoAuthenticated']")
     public WebElement clickloginPopUp;
 
-    @FindBy(id = "butLoginPartial")
+    @FindBy(xpath = ".//a[@id='butLoginPartial']")
     public WebElement clickButtonLogin;
 
-    @FindBy(id = "Email")
+    @FindBy(xpath = ".//input[@id='Email']")
     public WebElement fieldEmail;
 
-    @FindBy(id = "Password")
+    @FindBy(xpath = ".//input[@id='Password']")
     public WebElement fieldPassword;
 
-    @FindBy(id = "submitLogin")
+    @FindBy(xpath = ".//button[@id='submitLogin']")
     public WebElement buttonSubmitLogin;
 
-    @FindBy(id = "btn_create_purchase")
-    public WebElement buttonCreatePurchase;
-
-    @FindBy(id = "myTenders")
+    @FindBy(xpath = ".//div[@id='myTenders']")
     public WebElement NameMyTenders;
 
     @FindBy(xpath = ".//div[@class = 'panel-body']")
