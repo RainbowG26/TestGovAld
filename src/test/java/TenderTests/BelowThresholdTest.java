@@ -5,78 +5,92 @@ import parentTest.ParentTest;
 
 public class BelowThresholdTest extends ParentTest {
 
+    public BelowThresholdTest() {
+    }
+
     @Test
     public void createBelowThreshold() throws Exception {
-        loginPage.loginUser("test.gov.user@yopmail.com", "123456");
-        homePage.clickButtonCreatePurchase();
-        homePage.clickBelowThresholdPurchase();
-        belowThresholdPage.inputTitle("Тест Допорогова закупівля");
-        belowThresholdPage.inputDescription("Тест Допорогова закупівля");
-        belowThresholdPage.clickSwitchButton();
-        belowThresholdPage.selectCurrenciesDropDown("string:UAH");
-        belowThresholdPage.clickSwitchButtonMultiLot();
-        belowThresholdPage.inputBudget("10000");
-        belowThresholdPage.inputMinStepPricePercentage("1");
-        belowThresholdPage.periodEnquiryStartCalendar(5);
-        belowThresholdPage.periodEnquiryEndCalendar(10);
-        belowThresholdPage.periodEnquiryStartSubmissionOfTenderProposals(10);
-        belowThresholdPage.periodEnquiryEndSubmissionOfTenderProposals(15);
-        belowThresholdPage.clickNextStepButton();
+        actionWithElements.openUrl(" https://test-gov.ald.in.ua/purchases");
+        actionWithElements.clickOnElementByLocator(loginPage.clickloginPopUp);
+        actionWithElements.clickOnElementByLocator(loginPage.clickButtonLogin);
+        actionWithElements.enterText(loginPage.fieldEmail, "test.gov.user@yopmail.com");
+        actionWithElements.enterText(loginPage.fieldPassword, "123456");
+        actionWithElements.clickOnElementByLocator(loginPage.buttonSubmitLogin);
+        actionWithElements.isElementPresent(homePage.buttonCreatePurchase);
+        actionWithElements.isElementPresent(loginPage.NameMyTenders);
 
-        belowThresholdPage.addProcurementSubject0();
-        belowThresholdPage.procurementSubjectDescription00("Молоко");
-        belowThresholdPage.procurementSubjectQuantity00("1000");
-        belowThresholdPage.selectUnit00("NMP");
-        belowThresholdPage.clickClassifier212015_();
-        belowThresholdPage.searchClassifier212015("03333000-4");
-        belowThresholdPage.elementDisplayedClassifierId();
-        belowThresholdPage.addClassifier();
-        belowThresholdPage.clickOtherClassifier();
-        belowThresholdPage.searchOtherClassifier("000");
-        belowThresholdPage.elementDisplayedOtherClassifierId();
-        belowThresholdPage.addOtherClassifier();
-        belowThresholdPage.deliveryTimeStartCalendar(40);
-        belowThresholdPage.deliveryTimeEndCalendar(30);
-        belowThresholdPage.selectCountries00("1");
-        belowThresholdPage.selectRegions00("11");
-        belowThresholdPage.inputZipCode00("08500");
-        belowThresholdPage.inputLocality00("Київ");
-        belowThresholdPage.inputStreet00("вул. Маршала Жукова 45");
-        belowThresholdPage.inputCoordinatesLatitude00("23");
-        belowThresholdPage.inputCoordinatesLongitude00("89");
-        belowThresholdPage.clickUpdate00();
-        belowThresholdPage.clickNextStepButton();
+        actionWithElements.clickOnElementByLocator(homePage.buttonCreatePurchase);
+        actionWithElements.clickOnElementByLocator(homePage.belowThresholdPurchase);
 
-        belowThresholdPage.addFeatures0();
-        belowThresholdPage.inputFeatureTitle00("Яготинське молоко пастеризоване");
-        belowThresholdPage.inputFeatureDescription00("Вироблено в Україні на заводі");
-        belowThresholdPage.clickPosition();
-        belowThresholdPage.selectFeatureItem00("Молоко");
-        belowThresholdPage.clickClearButton();
-        belowThresholdPage.inputFeatureEnumTitle000("Початок");
-        belowThresholdPage.inputFeatureEnumDescription000("Початок коментару");
-        belowThresholdPage.clickAddFeatureEnum00();
-        belowThresholdPage.inputFeatureEnumValue001("10");
-        belowThresholdPage.inputFeatureEnumTitle001("Початок");
-        belowThresholdPage.inputFeatureEnumDescription001("Початок коментару");
-        belowThresholdPage.clickUpdateFeature00();
+        actionWithElements.enterText(belowThresholdPage.titleOfTenderForEdit, "Тест Допорогова закупівля");
+        actionWithElements.enterText(belowThresholdPage.descriptionBelowThreshold, "Тест Допорогова закупівля");
+        actionWithElements.setCheckboxState(belowThresholdPage.switchButton, "clicked");
+        actionWithElements.selectValueInDropDownByValue(belowThresholdPage.selectCurrencies, "string:UAH");
+        actionWithElements.setCheckboxState(belowThresholdPage.switchButtonMultiLot, "unclicked"); //Без лотовый
+        actionWithElements.enterText(belowThresholdPage.fieldBudget, "10000");
+        actionWithElements.enterText(belowThresholdPage.minStepPricePercentage, "1");
+        actionWithElements.inputCalendarDataTime(5);
+        actionWithElements.inputCalendarDataTime(10);
+        actionWithElements.inputCalendarDataTime(10);
+        actionWithElements.inputCalendarDataTime(15);
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.nextStepButton);
 
-        belowThresholdPage.clickDocumentsTab();
-        belowThresholdPage.clickUploadDocument();
-        belowThresholdPage.selectCategoryDocument("biddingDocuments");
-        belowThresholdPage.selectDocumentFileTo("Tender");
-        belowThresholdPage.attachDocumentToTender("DocTender");
-        belowThresholdPage.clickSaveFile();
-        belowThresholdPage.movePurchaseView();
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.addProcurementSubject0);
+        actionWithElements.enterText(belowThresholdPage.procurementSubjectDescription00, "Молоко");
+        actionWithElements.enterText(belowThresholdPage.procurementSubjectQuantity00, "1000");
+        actionWithElements.selectValueInDropDownByValue(belowThresholdPage.selectUnit00, "NMP");
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.classifier212015_);
+        actionWithElements.enterText(belowThresholdPage.searchClassifierText, "03333000-4");
+        actionWithElements.isElementPresent1(belowThresholdPage.visibleCheckbox);
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.addClassifier);
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.otherClassifier);
+        actionWithElements.enterText(belowThresholdPage.searchClassifierText, "000");
+        actionWithElements.isElementPresent1(belowThresholdPage.visibleCheckbox);
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.addClassifier);
+        actionWithElements.inputCalendarDataTime(40);
+        actionWithElements.inputCalendarDataTime(30);
+        actionWithElements.selectValueInDropDownByValue(belowThresholdPage.select_countries00, "1");
+        actionWithElements.selectValueInDropDownByValue(belowThresholdPage.select_regions00, "11");
+        actionWithElements.enterText(belowThresholdPage.zip_code_00, "08500");
+        actionWithElements.enterText(belowThresholdPage.locality_00, "Київ");
+        actionWithElements.enterText(belowThresholdPage.street_00, "вул. Маршала Жукова 45");
+        actionWithElements.enterText(belowThresholdPage.coordinatesLatitude00, "23");
+        actionWithElements.enterText(belowThresholdPage.сoordinatesLongitude00, "89");
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.update_00);
 
-        belowThresholdPage.publishPurchase();
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.nextStepButton);
 
-        belowThresholdPage.purchaseECP();
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.add_features0);
+        actionWithElements.enterText(belowThresholdPage.featureTitle_0_0, "Яготинське молоко пастеризоване");
+        actionWithElements.enterText(belowThresholdPage.featureDescription_0_0, "Вироблено в Україні на заводі");
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.position);
+        actionWithElements.selectValueInDropDownByValue(belowThresholdPage.featureItem_0_0, "Молоко");
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.clearButton);
+        actionWithElements.enterText(belowThresholdPage.featureEnumTitle_0_0_0, "Початок");
+        actionWithElements.enterText(belowThresholdPage.featureEnumDescription_0_0_0, "Початок коментару");
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.addFeatureEnum_0_0);
+        actionWithElements.enterText(belowThresholdPage.featureEnumValue_0_0_1, "10");
+        actionWithElements.enterText(belowThresholdPage.featureEnumTitle_0_0_1, "Початок");
+        actionWithElements.enterText(belowThresholdPage.featureEnumDescription_0_0_1, "Початок коментару");
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.updateFeature_0_0);
+
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.documentsTab);
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.uploadDocument);
+        actionWithElements.selectValueInDropDownByValue(belowThresholdPage.categorySelect, "biddingDocuments");
+        actionWithElements.selectValueInDropDownByValue(belowThresholdPage.documentOfSelect, "Tender");
+        actionWithElements.upLoadFile(belowThresholdPage.buttonAttachDocument, "DocTender");
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.saveFile);
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.movePurchaseView);
+
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.publishPurchase);
+
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.purchaseECP);
+
         planPage.workWithImposeECP("Локальні сертифікати", "UserSert", "Key6", "qwerty");
 
-        belowThresholdPage.publishPurchase();
+        actionWithElements.clickOnElementByLocator(belowThresholdPage.publishPurchase);
 
-        planPage.elementDisplayedIDTender();
+        actionWithElements.isElementPresent1(planPage.displayedIDTender);
         belowThresholdPage.findIdTender();
     }
 }
