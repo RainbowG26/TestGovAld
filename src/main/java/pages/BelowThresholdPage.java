@@ -21,7 +21,7 @@ public class BelowThresholdPage extends ParentPage {
     @FindBy(xpath = ".//md-switch[@id='is_vat']")
     public WebElement switchButton;
 
-    @FindBy(xpath = ".//select[@id='select_currencies']s")
+    @FindBy(xpath = ".//select[@id='select_currencies']")
     public WebElement selectCurrencies;
 
     @FindBy(xpath = ".//md-switch[@id='is_multilot']")
@@ -57,7 +57,7 @@ public class BelowThresholdPage extends ParentPage {
     @FindBy(xpath = ".//*[contains(@id,'anchor')]")
     public WebElement visibleCheckbox;
 
-    @FindBy(id = ".//button[@id='add-classifier']")
+    @FindBy(xpath = ".//button[@id='add-classifier']")
     public WebElement addClassifier;
 
     @FindBy(xpath = ".//button[@itemid='otherClassifier']")
