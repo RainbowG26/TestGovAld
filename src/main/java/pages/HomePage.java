@@ -10,24 +10,13 @@ public class HomePage extends ParentPage{
         super(driver);
     }
 
-    @FindBy(id = "btn_create_purchase")
-    private WebElement buttonCreatePurchase;
+    @FindBy(xpath = ".//button[@id='btn_create_purchase']")
+    public WebElement buttonCreatePurchase;
 
     @FindBy(xpath = ".//a[@href='/Plan/Create']")
-    private WebElement planPurchase;
+    public WebElement planPurchase;
 
     @FindBy(xpath = ".//a[@href = '/Purchase/Create/BelowThreshold']")
-    private WebElement belowThresholdPurchase;
+    public WebElement belowThresholdPurchase;
 
-    public void clickButtonCreatePurchase() {
-        actionWithOurElements.clickOnElement(buttonCreatePurchase);
-    }
-
-    public void clickPlanPurchase() {
-        actionWithOurElements.clickOnElementByLocator(planPurchase);
-    }
-
-    public void clickBelowThresholdPurchase(){
-        actionWithOurElements.clickOnElementByLocator(belowThresholdPurchase);
-    }
 }

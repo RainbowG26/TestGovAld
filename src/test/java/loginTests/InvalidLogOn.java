@@ -11,15 +11,16 @@ public class InvalidLogOn extends ParentTest {
 
     @Test
     public void invalidLogOn() {
-        loginPage.openLoginPage();
-        loginPage.clickloginPopUpWindow();
-        loginPage.clickButtonLoginForm();
-        loginPage.enterLoginToInput("fjghskbv37284@yopmail.com");
-        loginPage.enterPasswordToInput("qwerty123");
-        loginPage.clickOnSubmitButton();
-        loginPage.xpathPresentInvalidLogOn();
-        checkAC("Locator './/div[@class = 'panel-body']' not found",
-                loginPage.isPanelBodyPresent(),true);
+        actionWithElements.openUrl(" https://test-gov.ald.in.ua/purchases");
+        actionWithElements.clickOnElementByLocator(loginPage.clickloginPopUp);
+        actionWithElements.clickOnElementByLocator(loginPage.clickButtonLogin);
+        actionWithElements.enterText(loginPage.fieldEmail, "test.gov.user@yopmail.com");
+        actionWithElements.enterText(loginPage.fieldPassword, "sdfgsdf321");
+        actionWithElements.clickOnElementByLocator(loginPage.buttonSubmitLogin);
+        actionWithElements.isElementPresent(loginPage.buttonSubmitLogin);
+        actionWithElements.waitABit(5);
+        actionWithElements.checkAC("xpath './/div[@class = 'panel-body']' not found",
+                actionWithElements.isElementPresent(loginPage.PanelBody),true);
         //Assert метод assertTrue который проверяет правильность Actual result
         //метод isDisplayed ждет булевскую переменную True/False показывает и обращается к webDriver
         // !webDriver - инвертирует в обратную сторону True/False False/True //Дописываем сообщение перед webDriver.findElement только при False

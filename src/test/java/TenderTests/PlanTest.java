@@ -5,59 +5,72 @@ import parentTest.ParentTest;
 
 public class PlanTest extends ParentTest {
 
+    public PlanTest() {
+    }
+
     @Test
     public void createPlan() throws Exception {
-        loginPage.loginUser("test.gov.user@yopmail.com", "123456");
-        homePage.clickButtonCreatePurchase();
-        homePage.clickPlanPurchase();
-        planPage.inputTitle("Тест Створення Плана закупівель");
-        planPage.inputDescription("Тест Створення Плана закупівель");
-        planPage.inputBudget("1000");
-        planPage.selectCurrenciesDropDown("string:UAH");
-        planPage.planStartCalendar(2);
-        planPage.selectYear("number:2017");
-        planPage.selectPurchaseType("3");
-        planPage.clickClassifier212015();
-        planPage.searchClassifier212015("30000000-9");
-        planPage.elementDisplayedClassifierId();
-        planPage.addClassifier();
-        planPage.clickOtherClassifier();
-        planPage.searchOtherClassifier("3121");
-        planPage.elementDisplayedOtherClassifierId();
-        planPage.addOtherClassifier();
-        planPage.clickKekvClassifier();
-        planPage.searchKekvClassifier("2000");
-        planPage.elementDisplayedKekvClassifier();
-        planPage.addKekvClassifier();
-        planPage.saveChangesPlanNextStep();
+        actionWithElements.openUrl(" https://test-gov.ald.in.ua/purchases");
+        actionWithElements.clickOnElementByLocator(loginPage.clickloginPopUp);
+        actionWithElements.clickOnElementByLocator(loginPage.clickButtonLogin);
+        actionWithElements.enterText(loginPage.fieldEmail, "test.gov.user@yopmail.com");
+        actionWithElements.enterText(loginPage.fieldPassword, "123456");
+        actionWithElements.clickOnElementByLocator(loginPage.buttonSubmitLogin);
+        actionWithElements.isElementPresent(homePage.buttonCreatePurchase);
+        actionWithElements.isElementPresent(loginPage.NameMyTenders);
 
-        planPage.addProcurementSubject0();
-        planPage.procurementSubjectDescription00("Монітор");
-        planPage.procurementSubjectQuantity00("100");
-        planPage.selectUnit00("H87");
-        planPage.clickClassifier212015_();
-        planPage.searchClassifier212015("30000000-9");
-        planPage.elementDisplayedClassifierId();
-        planPage.addClassifier();
-        planPage.btnOtherClassifier();
-        planPage.searchOtherClassifier("000");
-        planPage.elementDisplayedOtherClassifierId();
-        planPage.addClassifier();
-        planPage.clickUpdate00();
-        planPage.btnMovePlanView();
+        actionWithElements.clickOnElementByLocator(homePage.buttonCreatePurchase);
+        actionWithElements.clickOnElementByLocator(homePage.planPurchase);
 
-        planPage.publishBtn();
+        actionWithElements.enterText(planPage.fieldTitle, "Тест Створення Плана закупівель");
+        actionWithElements.enterText(planPage.fieldDescription, "Тест Створення Плана закупівель");
+        actionWithElements.enterText(planPage.fieldBudget, "1000");
+        actionWithElements.selectValueInDropDownByValue(planPage.selectCurrencies, "string:UAH");
+        actionWithElements.inputCalendarDataTime(5);
+        actionWithElements.selectValueInDropDownByValue(planPage.yearSelect, "number:2017");
+        actionWithElements.selectValueInDropDownByValue(planPage.purchaseType, "3");
+        actionWithElements.clickOnElementByLocator(planPage.classifier212015);
+        actionWithElements.enterText(planPage.searchClassifierText, "30231300-0");
+        actionWithElements.isElementPresent1(planPage.visibleCheckbox);
+        actionWithElements.clickOnElementByLocator(planPage.addClassifier);
+        actionWithElements.clickOnElementByLocator(planPage.otherClassifier);
+        actionWithElements.enterText(planPage.searchClassifierText, "3121");
+        actionWithElements.isElementPresent1(planPage.visibleCheckbox);
+        actionWithElements.clickOnElementByLocator(planPage.addClassifier);
+        actionWithElements.clickOnElementByLocator(planPage.kekvClassifier);
+        actionWithElements.enterText(planPage.searchClassifierText, "2000");
+        actionWithElements.isElementPresent1(planPage.visibleCheckbox);
+        actionWithElements.clickOnElementByLocator(planPage.addClassifier);
+        actionWithElements.clickOnElementByLocator(planPage.saveChangesPlanNextStep);
 
-        planPage.imposeECP();
-        planPage.selectCSK("Локальні сертифікати");
-        planPage.downloadFileUserSert("UserSert");
-        planPage.downloadFilePKey("Key6");
-        planPage.inputPKeyPassword("qwerty");
-        planPage.clickPKeyReadButton();
-        planPage.clickSignDataButton();
+        actionWithElements.clickOnElementByLocator(planPage.addProcurementSubject0);
+        actionWithElements.enterText(planPage.procurementSubjectDescription00, "Монітор");
+        actionWithElements.enterText(planPage.procurementSubjectQuantity00, "100");
+        actionWithElements.selectValueInDropDownByValue(planPage.selectUnit00, "H87");
+        actionWithElements.clickOnElementByLocator(planPage.classifier212015_);
+        actionWithElements.enterText(planPage.searchClassifierText, "30231300-0");
+        actionWithElements.isElementPresent1(planPage.visibleCheckbox);
+        actionWithElements.clickOnElementByLocator(planPage.addClassifier);
+        actionWithElements.clickOnElementByLocator(planPage.btnOtherClassifier);
+        actionWithElements.enterText(planPage.searchClassifierText, "000");
+        actionWithElements.isElementPresent1(planPage.visibleCheckbox);
+        actionWithElements.clickOnElementByLocator(planPage.addClassifier);
+        actionWithElements.clickOnElementByLocator(planPage.update00);
+        actionWithElements.clickOnElementByLocator(planPage.movePlanView);
 
-        planPage.publishBtn();
+        actionWithElements.clickOnElementByLocator(planPage.publishBtn);
 
-        planPage.elementDisplayedIDTender();
+        actionWithElements.clickOnElementByLocator(planPage.imposeECP);
+
+        actionWithElements.selectTextInDropDownByText(planPage.selectCSK, "Локальні сертифікати");
+        actionWithElements.upLoadFile(planPage.filePathPKCerts, "UserSert");
+        actionWithElements.upLoadFile(planPage.filePathPKey, "Key6");
+        actionWithElements.enterText(planPage.pKeyPassword, "qwerty");
+        actionWithElements.clickOnElementByLocator(planPage.pKeyReadButton);
+        actionWithElements.clickOnElement(planPage.signDataButton);
+
+        actionWithElements.clickOnElementByLocator(planPage.publishBtn);
+
+        actionWithElements.isElementPresent1(planPage.displayedIDTender);
     }
 }
