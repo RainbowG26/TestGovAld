@@ -23,7 +23,6 @@ public class PlanTest extends ParentTest {
         actionWithElements.waitABit(5);
         actionWithElements.clickOnElementByLocator(homePage.buttonCreatePurchase);
         actionWithElements.clickOnElementByLocator(homePage.planPurchase);
-
         actionWithElements.enterText(planPage.fieldTitle, "Тест Створення Плана закупівель");
         actionWithElements.enterText(planPage.fieldDescription, "Тест Створення Плана закупівель");
         actionWithElements.enterText(planPage.fieldBudget, "1000");
