@@ -23,6 +23,7 @@ public class PlanTest extends ParentTest {
         actionWithElements.waitABit(5);
         actionWithElements.clickOnElementByLocator(homePage.buttonCreatePurchase);
         actionWithElements.clickOnElementByLocator(homePage.planPurchase);
+
         actionWithElements.enterText(planPage.fieldTitle, "Тест Створення Плана закупівель");
         actionWithElements.enterText(planPage.fieldDescription, "Тест Створення Плана закупівель");
         actionWithElements.enterText(planPage.fieldBudget, "1000");
@@ -40,7 +41,7 @@ public class PlanTest extends ParentTest {
         actionWithElements.isElementPresent1(planPage.visibleCheckbox);
         actionWithElements.clickOnElementByLocator(planPage.addClassifier);
         actionWithElements.waitABit(5);
-        actionWithElements.scrollPage();
+        actionWithElements.scrollPageDown();
         actionWithElements.clickOnElementByLocator(planPage.kekvClassifier);
         actionWithElements.enterText(planPage.searchClassifierText, "2000");
         actionWithElements.isElementPresent1(planPage.visibleCheckbox);
@@ -77,11 +78,11 @@ public class PlanTest extends ParentTest {
         actionWithElements.enterText(planPage.pKeyPassword, "qwerty");
         actionWithElements.clickOnElementByLocator(planPage.pKeyReadButton);
         actionWithElements.clickOnElement(planPage.signDataButton);
-        actionWithElements.waitABit(5);
 
         actionWithElements.waitABit(5);
         actionWithElements.clickOnElementByLocator(planPage.publishBtn);
 
+        actionWithElements.waitABit(5);
         actionWithElements.isElementPresent1(planPage.displayedIDTender);
     }
 }
