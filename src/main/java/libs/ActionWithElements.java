@@ -30,6 +30,7 @@ public class ActionWithElements { //В этот класс мы будем вы�
         webDriverWait15 = new WebDriverWait(webDriver, 15); //Драйвер жди 15 секунд каждые пол секунды он будет счелкать по кнопке
     }
 
+
     /**
      * Method opens url
      *
@@ -64,6 +65,19 @@ public class ActionWithElements { //В этот класс мы будем вы�
     }
 
     /**
+     * Check actualResult / expectedResult
+     * @param message
+     * @param actualResult
+     * @param expectedResult
+     */
+
+    //Создаем метод Аксептес кретерии с типами и переменными для сравнение Фактического и Ожидаемого результата
+    public void checkAC(String message, boolean actualResult, boolean expectedResult) {
+        //делает сравнение actualResult с expectedResult заимпортим is - ALT+ENTER выбираем CoreMatchers
+        Assert.assertThat(message, actualResult, is(expectedResult));
+    }
+
+    /**
      * Method clears and inputs text to webElement
      *
      * @param element
@@ -81,6 +95,25 @@ public class ActionWithElements { //В этот класс мы будем вы�
             logger.error("Can not work with element - " + text);
             Assert.fail("Can not work with element - " + text);
         }
+    }
+
+    public String getText(WebElement element) {
+
+        String elementText = null;
+
+        try {
+            if (isElementPresent(element) == true) {
+                elementText = element.getText().trim();
+                logger.info("Gettin text from web element");
+            } else {
+                logger.error("Can't get text from element " + element);
+                Assert.fail("Can't get text from element " + element);
+            }
+        } catch (Exception e) {
+            logger.error("Can't get text from element " + element);
+            Assert.fail("Can't get text from element " + element);
+        }
+        return elementText;
     }
 
     /**
@@ -182,17 +215,17 @@ public class ActionWithElements { //В этот класс мы будем вы�
     }
 
     //Метод выбора значения в DropDown по value
-    public void selectValueInDropDownByValue(WebElement dropDown, String text) {
+    public void selectValueInDropDownByValue(WebElement dropDown, String value) {
         try {
             //Библиотека умеет работать с ДропДауном и с него получаем все елементы
             Select optionsFromDropDown = new Select(dropDown);
             // Выбери нам из value
             // select by value - работает быстрей в разы!!
-            optionsFromDropDown.selectByValue(text);
-            logger.info("Was selected is DropDown by value - " + text);
+            optionsFromDropDown.selectByValue(value);
+            logger.info("Was selected is DropDown by value - " + value);
         } catch (Exception e) {
-            logger.error("Can not work with DropDown - " + text);
-            Assert.fail("Can not work with DropDown - " + text);
+            logger.error("Can not work with DropDown - " + value);
+            Assert.fail("Can not work with DropDown - " + value);
         }
     }
 
@@ -244,11 +277,16 @@ public class ActionWithElements { //В этот класс мы будем вы�
             LocalDateTime currentDate = LocalDateTime.now();
             //запуск с консоли - SetDateTimePickerValue('planStart','2017-11-14 17:52:07')
             setDataPicker("planStart", (currentDate.plusMinutes(minute)).format(dateFormat));
-            //setDataPicker("period_enquiry_end", (currentDate.plusMinutes(15)).format(dateFormat));
-            logger.info("Data picker work");
+            setDataPicker("period_enquiry_start", (currentDate.plusMinutes(5)).format(dateFormat));
+            setDataPicker("period_enquiry_end", (currentDate.plusMinutes(10)).format(dateFormat));
+            setDataPicker("period_tender_start", (currentDate.plusMinutes(10)).format(dateFormat));
+            setDataPicker("period_tender_end", (currentDate.plusMinutes(15)).format(dateFormat));
+            setDataPicker("delivery_start_00", (currentDate.plusMinutes(40)).format(dateFormat));
+            setDataPicker("delivery_end_00", (currentDate.plusDays(30)).format(dateFormat));
+            logger.info("Date and time entered in the field");
         } catch (Exception e) {
-            logger.error("Data picker does not work");
-            Assert.fail("Data picker does not work");
+            logger.error("Date and time are not entered in the field");
+            Assert.fail("Date and time are not entered in the field");
         }
     }
 
@@ -258,7 +296,7 @@ public class ActionWithElements { //В этот класс мы будем вы�
 //
 //    }
 
-    public void upLoadFile(WebElement element, String key) throws IOException {
+    public void upLoadFile(WebElement element,String key) throws IOException {
         try {
             File filePath = new File(ConfigData.getFilePathValue(key));
             element.sendKeys(filePath.getAbsolutePath());
@@ -300,26 +338,27 @@ public class ActionWithElements { //В этот класс мы будем вы�
         }
     }
 
-    public void scrollPage() {
+    public void scrollPageDown() {
         try {
             JavascriptExecutor js = (JavascriptExecutor) webDriver;
-            js.executeScript("window.scrollBy(0,250)", "");
+            js.executeScript("window.scrollBy(0,350)", "");
+            logger.info("Scroll Page Down");
         } catch (JavascriptException e) {
+            logger.error("Can not work with Scroll Page Down");
+            Assert.fail("Can not work with Scroll Page Down");
             e.printStackTrace();
         }
     }
 
-    /**
-     * Check actualResult / expectedResult
-     *
-     * @param message
-     * @param actualResult
-     * @param expectedResult
-     */
-
-    //Создаем метод Аксептес кретерии с типами и переменными для сравнение Фактического и Ожидаемого результата
-    public void checkAC(String message, boolean actualResult, boolean expectedResult) {
-        //делает сравнение actualResult с expectedResult заимпортим is - ALT+ENTER выбираем CoreMatchers
-        Assert.assertThat(message, actualResult, is(expectedResult));
+    public void scrollPageUp() {
+        try {
+            JavascriptExecutor js = (JavascriptExecutor) webDriver;
+            js.executeScript("window.scrollBy(0,-300)", "");
+            logger.info("Scroll Page Up");
+        } catch (JavascriptException e) {
+            logger.error("Can not work with Scroll Page Up");
+            Assert.fail("Can not work with Scroll Page Up");
+            e.printStackTrace();
+        }
     }
 }
