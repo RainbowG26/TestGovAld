@@ -4,15 +4,16 @@ import org.junit.Test;
 import parentTest.ParentTest;
 
 
-public class LoginTest1 extends ParentTest {
+public class LoginTest extends ParentTest {
 
 
-    public LoginTest1() {
+    public LoginTest() {
     }
 
     @Test //аннотацию Junit
     public void validLogOn() {
         actionWithElements.openUrl(" https://test-gov.ald.in.ua/purchases");
+        actionWithElements.waitABit(5);
         actionWithElements.clickOnElementByLocator(loginPage.clickloginPopUp);
         actionWithElements.clickOnElementByLocator(loginPage.clickButtonLogin);
         actionWithElements.enterText(loginPage.fieldEmail, "test.gov.user@yopmail.com");

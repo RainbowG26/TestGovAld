@@ -9,6 +9,7 @@ import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import pages.HomePage;
 import pages.LoginPage;
 import pages.PlanPage;
 
@@ -22,6 +23,7 @@ public class ParentTest {
 
     private String pathToScreenShot; //Переменная для изменяемого пути к файлу
     public LoginPage loginPage; //обьявили переменную loginPage
+    public HomePage homePage;
     public PlanPage planPage;
     public ActionWithElements actionWithElements;
 
@@ -48,6 +50,7 @@ public class ParentTest {
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         loginPage = new LoginPage(webDriver); //Передали в loginPage webDriver с которым мы будем пользоваться
+        homePage = new HomePage(webDriver);
         planPage = new PlanPage(webDriver);
         actionWithElements = new ActionWithElements(webDriver);
     }

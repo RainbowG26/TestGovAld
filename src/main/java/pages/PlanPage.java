@@ -12,284 +12,120 @@ public class PlanPage extends ParentPage {
         super(driver);
     }
 
-    @FindBy(id = "btn_create_purchase")
-    private WebElement buttonCreatePurchase;
+    @FindBy(xpath = ".//input[@id='planTitle']")
+    public WebElement fieldTitle;
 
-    @FindBy(xpath = ".//a[@href='/Plan/Create']")
-    private WebElement planPurchase;
+    @FindBy(xpath = ".//input[@id='planDescription']")
+    public WebElement fieldDescription;
 
-    @FindBy(id = "planTitle")
-    private WebElement planTitle;
+    @FindBy(xpath = ".//input[@id='planBudget']")
+    public WebElement fieldBudget;
 
-    @FindBy(id = "planDescription")
-    private WebElement planDescription;
+    @FindBy(xpath = ".//select[@id='select_currencies']")
+    public WebElement selectCurrencies;
 
-    @FindBy(id = "planBudget")
-    private WebElement planBudget;
+    @FindBy(xpath = ".//input[@id='planStart']")
+    public WebElement planStartCalendar;
 
-    @FindBy(id = "select_currencies")
-    private WebElement selectCurrencies;
+    @FindBy(xpath = ".//a[@class='btn btn-primary']")
+    public WebElement clearFeild;
 
-    @FindBy(id = "planStart")
-    private WebElement planStartCalendar;
+    @FindBy(xpath = ".//*[@name='year']")
+    public WebElement yearSelect;
 
-    @FindBy(xpath = ".//a[@class = 'btn btn-primary']")
-    private WebElement clearFeild;
-
-    @FindBy(xpath = ".//*[@name = 'year']")
-    private WebElement yearSelect;
-
-    @FindBy(id = "purchaseType")
-    private WebElement purchaseType;
+    @FindBy(xpath = ".//select[@id='purchaseType']")
+    public WebElement purchaseType;
     //Повторяется 2 раза
-    @FindBy(id = "cls_click")
-    private WebElement clsClick;
+    @FindBy(xpath = ".//button[@id='cls_click']")
+    public WebElement classifier212015;
 
-    @FindBy(id = "search-classifier-text")
-    private WebElement searchClassifierText;
+    @FindBy(xpath = ".//input[@id='search-classifier-text']")
+    public WebElement searchClassifierText;
 
     @FindBy(xpath = ".//*[contains(@id,'anchor')]")
-    private WebElement visibleCheckbox;
+    public WebElement visibleCheckbox;
 
-    @FindBy(id = "add-classifier")
-    private WebElement addClassifier;
+    @FindBy(xpath = ".//button[@id='add-classifier']")
+    public WebElement addClassifier;
 
-    @FindBy(xpath = ".//button[@itemid = 'otherClassifier']")
-    private WebElement otherClassifier;
+    @FindBy(xpath = ".//button[@itemid='otherClassifier']")
+    public WebElement otherClassifier;
 
-    @FindBy(xpath = ".//button[@itemid = 'kekvClassifier']")
-    private WebElement kekvClassifier;
+    @FindBy(xpath = ".//button[@itemid='kekvClassifier']")
+    public WebElement kekvClassifier;
 
-    @FindBy(id = "saveChangesPlanNextStep")
-    private WebElement saveChangesPlanNextStep;
+    @FindBy(xpath = ".//button[@id='saveChangesPlanNextStep']")
+    public WebElement saveChangesPlanNextStep;
 
     @FindBy(xpath = ".//button[@class='btn btn-primary ng-scope']")
-    private WebElement addProcurementSubject0;
+    public WebElement addProcurementSubject0;
 
-    @FindBy(xpath = ".//input[@class='form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required']")
-    private WebElement procurementSubjectDescription00;
+    @FindBy(xpath = ".//input[@ng-model='procurementSubject.description']")
+    public WebElement procurementSubjectDescription00;
 
-    @FindBy(xpath = ".//input[@class='form-control ng-pristine ng-untouched ng-isolate-scope ng-empty ng-invalid ng-invalid-required ng-valid-pattern']")
-    private WebElement procurementSubjectQuantity00;
+    @FindBy(xpath = ".//input[@ng-model='procurementSubject.quantity']")
+    public WebElement procurementSubjectQuantity00;
 
-    @FindBy(xpath = ".//select[@class='form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required']")
-    private WebElement selectUnit00;
+    @FindBy(xpath = ".//select[@ng-model='ngModel']")
+    public WebElement selectUnit00;
 
-    @FindBy(id = "cls_click_")
-    private WebElement cls_click_;
+    @FindBy(xpath = ".//button[@id='cls_click_']")
+    public WebElement classifier212015_;
 
-    @FindBy(id = "btn_otherClassifier")
-    private WebElement btnOtherClassifier;
+    @FindBy(xpath = ".//button[@id='btn_otherClassifier']")
+    public WebElement btnOtherClassifier;
 
     @FindBy(xpath = ".//button[@class='btn btn-success ng-scope']")
-    private WebElement update00;
+    public WebElement update00;
 
     @FindBy(xpath = ".//button[@class='btn btn-primary']")
-    private WebElement cancelProcurementSubject00;
+    public WebElement cancelProcurementSubject00;
 
     @FindBy(xpath = ".//a[@class='btn btn-default hgreen']")
-    private WebElement editProcurementsSubject00;
+    public WebElement editProcurementsSubject00;
 
     @FindBy(xpath = ".//a[@class='btn btn-default ng-scope']")
-    private WebElement deleteConfirmProcurementSubject00;
+    public WebElement deleteConfirmProcurementSubject00;
 
-    @FindBy(id = "movePlanView")
-    private WebElement movePlanView;
+    @FindBy(xpath = ".//button[@id='movePlanView']")
+    public WebElement movePlanView;
 
-    @FindBy(xpath = ".//button[@ng-if = 'control.publishBtn' and @ng-click = 'publishPlan()']")
-    private WebElement publishBtn;
+    @FindBy(xpath = ".//button[@ng-if='control.publishBtn' and @ng-click = 'publishPlan()']")
+    public WebElement publishBtn;
 
-    @FindBy(xpath = ".//button[@ng-if = 'control.needEcp']")
-    private WebElement imposeECP;
+    @FindBy(xpath = ".//button[@ng-if='control.needEcp']")
+    public WebElement imposeECP;
 
-    @FindBy(id = "CAsServersSelect")
-    private WebElement selectCSK;
+    @FindBy(xpath = ".//select[@id='CAsServersSelect']")
+    public WebElement selectCSK;
 
-    @FindBy(xpath = ".//input[@id = 'ChoosePKCertsInput' and @type = 'file']")
-    private WebElement filePathPKCerts;
+    @FindBy(xpath = ".//input[@id='ChoosePKCertsInput']")
+    public WebElement filePathPKCerts;
 
-    @FindBy(xpath = ".//input[@id = 'PKeyFileInput' and @type = 'file']")
-    private WebElement filePathPKey;
+    @FindBy(xpath = ".//input[@id='PKeyFileInput' and @type = 'file']")
+    public WebElement filePathPKey;
 
-    @FindBy(id = "PKeyPassword")
-    private WebElement PKeyPassword;
+    @FindBy(xpath = ".//input[@id='PKeyPassword']")
+    public WebElement pKeyPassword;
 
-    @FindBy(id = "PKeyReadButton")
-    private WebElement PKeyReadButton;
+    @FindBy(xpath = ".//button[@id='PKeyReadButton']")
+    public WebElement pKeyReadButton;
 
-    @FindBy(id = "SignDataButton")
-    private WebElement SignDataButton;
+    @FindBy(xpath = ".//button[@id='SignDataButton']")
+    public WebElement signDataButton;
 
     @FindBy(xpath = ".//span[contains(text(),'ID:')]")
-    private WebElement displayedIDTender;
+    public WebElement displayedIDTender;
 
-    public void clickButtonCreatePurchase() {
-        actionWithElements.clickOnElement(buttonCreatePurchase);
-    }
-
-    public void clickPlanPurchase() {
-        actionWithElements.clickOnElementByLocator(planPurchase);
-    }
-
-    public void inputPlanTitle(String text) {
-        actionWithElements.enterText(planTitle, text);
-    }
-
-    public void inputPlanDescription(String text) {
-        actionWithElements.enterText(planDescription, text);
-    }
-
-    public void inputPlanBudget(String text) {
-        actionWithElements.enterText(planBudget, text);
-    }
-
-    public void selectCurrenciesDropDown(String valueOfType) {
-        actionWithElements.selectValueInDropDownByValue(selectCurrencies, valueOfType);
-    }
-
-    public void planStartCalendar(int minute) {
-        actionWithElements.inputCalendarDataTime(minute);
-    }
-
-    public void selectYear(String valueOfType) {
-        actionWithElements.selectValueInDropDownByValue(yearSelect, valueOfType);
-    }
-
-    public void selectPurchaseType(String valueOfType) {
-        actionWithElements.selectValueInDropDownByValue(purchaseType, valueOfType);
-    }
-
-    public void clickClassifier212015() {
-        actionWithElements.clickOnElement(clsClick);
-    }
-
-    public void searchClassifier212015(String number) {
-        actionWithElements.enterText(searchClassifierText, number);
-    }
-
-    public void elementDisplayedClassifierId() throws Exception {
-        actionWithElements.isElementPresent1(visibleCheckbox);
-    }
-
-    public void addClassifier() {
-        actionWithElements.clickOnElement(addClassifier);
-    }
-
-    public void clickOtherClassifier() {
-        utils.waitABit(5); //Метод waitABit Static, он напрямую вызывается без приложения к конкретному объекту этого класса
-        actionWithElements.clickOnElement(otherClassifier);
-    }
-
-    public void searchOtherClassifier(String number) {
-        actionWithElements.enterText(searchClassifierText, number);
-    }
-
-    public void elementDisplayedOtherClassifierId() throws Exception {
-        actionWithElements.isElementPresent1(visibleCheckbox);
-    }
-
-    public void addOtherClassifier() {
-        actionWithElements.clickOnElement(addClassifier);
-    }
-
-    public void clickKekvClassifier() {
-        utils.waitABit(5);
-        actionWithElements.clickOnElement(kekvClassifier);
-    }
-
-    public void searchKekvClassifier(String number) {
-        actionWithElements.enterText(searchClassifierText, number);
-    }
-
-    public void elementDisplayedKekvClassifier() throws Exception {
-        actionWithElements.isElementPresent1(visibleCheckbox);
-    }
-
-    public void addKekvClassifier() {
-        actionWithElements.clickOnElement(addClassifier);
-    }
-
-    public void saveChangesPlanNextStep() {
-        utils.scrollPage();
-        utils.waitABit(5);
-        actionWithElements.clickOnElement(saveChangesPlanNextStep);
-    }
-
-    public void addProcurementSubject0() {
-        utils.waitABit(5);
-        actionWithElements.clickOnElement(addProcurementSubject0);
-    }
-
-    public void procurementSubjectDescription00(String text) {
-        actionWithElements.enterText(procurementSubjectDescription00, text);
-    }
-
-    public void procurementSubjectQuantity00(String number) {
-        actionWithElements.enterText(procurementSubjectQuantity00, number);
-    }
-
-    public void selectUnit00(String valueOfType) {
-        actionWithElements.selectValueInDropDownByValue(selectUnit00, valueOfType);
-    }
-
-    public void clickClassifier212015_() {
-        actionWithElements.clickOnElement(cls_click_);
-    }
-
-    public void btnOtherClassifier() {
-        utils.waitABit(5);
-        actionWithElements.clickOnElement(btnOtherClassifier);
-    }
-
-    public void clickUpdate00() throws Exception {
-        utils.waitABit(5);
-        actionWithElements.clickOnElement(update00);
-    }
-
-    public void btnMovePlanView() {
-        utils.waitABit(5);
-        actionWithElements.clickOnElement(movePlanView);
-    }
-
-    public void publishBtn() {
-        utils.waitABit(5);
-        actionWithElements.clickOnElement(publishBtn);
-    }
-
-    public void imposeECP() {
-        actionWithElements.clickOnElement(imposeECP);
-    }
-
-    public void selectCSK(String nameOfType) {
-        utils.waitABit(10);
+    //Method work with impose ECP
+    public void workWithImposeECP(String nameOfType, String fileUserSert, String filePKey, String password) throws IOException {
+        actionWithElements.waitABit(5);
         actionWithElements.selectTextInDropDownByText(selectCSK, nameOfType);
+        actionWithElements.upLoadFile(filePathPKCerts, fileUserSert);
+        actionWithElements.upLoadFile(filePathPKey, filePKey);
+        actionWithElements.enterText(pKeyPassword, password);
+        actionWithElements.clickOnElementByLocator(pKeyReadButton);
+        actionWithElements.clickOnElementByLocator(signDataButton);
     }
 
-
-    public void downloadFileUserSert(String key) throws IOException {
-        actionWithElements.downloadFile(filePathPKCerts, key);
-    }
-
-
-    public void downloadFilePKey(String key) throws IOException {
-        actionWithElements.downloadFile(filePathPKey, key);
-    }
-
-    public void inputPKeyPassword(String text) {
-        actionWithElements.enterText(PKeyPassword, text);
-    }
-
-    public void clickPKeyReadButton() {
-        actionWithElements.clickOnElement(PKeyReadButton);
-    }
-
-    public void clickSignDataButton(){
-        utils.waitABit(5);
-        actionWithElements.clickOnElement(SignDataButton);
-    }
-
-    public void elementDisplayedIDTender() throws Exception {
-        utils.waitABit(5);
-        actionWithElements.isElementPresent1(displayedIDTender);
-    }
 }
