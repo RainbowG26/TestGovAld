@@ -16,4 +16,7 @@ public class HomePage extends ParentPage{
     @FindBy(xpath = ".//a[@href='/Plan/Create']")
     public WebElement planPurchase;
 
+    @FindBy(xpath = ".//a[@href = '/Purchase/Create/BelowThreshold']")
+    public WebElement belowThresholdPurchase;
+
 }
