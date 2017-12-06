@@ -77,11 +77,11 @@ public class PlanTest extends ParentTest {
         actionWithElements.enterText(planPage.pKeyPassword, "qwerty");
         actionWithElements.clickOnElementByLocator(planPage.pKeyReadButton);
         actionWithElements.clickOnElement(planPage.signDataButton);
-        actionWithElements.waitABit(5);
 
         actionWithElements.waitABit(5);
         actionWithElements.clickOnElementByLocator(planPage.publishBtn);
 
+        actionWithElements.waitABit(5);
         actionWithElements.isElementPresent1(planPage.displayedIDTender);
     }
 }
